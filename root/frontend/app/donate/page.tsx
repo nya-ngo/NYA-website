@@ -1,33 +1,23 @@
-'use client'
+import Image from "next/image";
+export default function DonationPage() {
 
-import { useActionState } from 'react'
-import { createPost } from './action'
-
-const initialState = {
-  message: '',
-}
-
-export default function Form() {
-  const [state, formAction, pending] = useActionState(
-    createPost,
-    initialState
-  )
 
   return (
-    <form action={formAction}>
-      <label htmlFor="title">Title</label>
-      <input type="text" id="title" name="title" required />
+   <div className="bg-gray-200 min-h-screen w-full">
+  <main className="w-full min-h-screen flex flex-col">
+    <div className="relative h-96 w-screen">
+      <Image
+        src="next.svg"
+        alt="Donation"
+        fill
+        className="object-cover"
+      />
+    </div>
+    <div className="mt-4 bg-gray-400 w-full p-4">
+      
+    </div>
 
-      <label htmlFor="content">Content</label>
-      <textarea id="content" name="content" required />
-
-      {state?.message && (
-        <p aria-live="polite">{state.message}</p>
-      )}
-
-      <button disabled={pending}>
-        {pending ? 'Creating...' : 'Create Post'}
-      </button>
-    </form>
-  )
-}
+  </main>
+</div>
+  );
+} 
