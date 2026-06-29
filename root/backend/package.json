@@ -1,0 +1,21 @@
+{
+  "name": "nya-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.8.10",
+    "morgan": "^1.10.0",
+    "nodemailer": "^9.0.1",
+    "razorpay": "^2.9.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

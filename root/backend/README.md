@@ -85,7 +85,8 @@ Request:
   "name": "Tasila Poorna Shree",
   "email": "tasila@gmail.com",
   "phone": "9876543210",
-  "pan": "ABCDE1234F"
+  "pan": "ABCDE1234F",
+  "address": "123 Main Street, Hyderabad, Telangana"
 }
 ```
 
@@ -98,6 +99,7 @@ Response:
   "email": "tasila@gmail.com",
   "phone": "9876543210",
   "pan": "ABCDE1234F",
+  "address": "123 Main Street, Hyderabad, Telangana",
   "createdAt": "2026-06-25T00:00:00.000Z",
   "updatedAt": "2026-06-25T00:00:00.000Z",
   "__v": 0
