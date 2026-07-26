@@ -153,11 +153,7 @@ export default function GalleryGrid({ categories }: Props) {
                 </Link>
               </div>
 
-              {totalInCategory > 1 && (
-                <p style={{ fontSize: "0.75rem", color: "#aaa", marginTop: "10px", marginBottom: 0 }}>
-                  Use ← → arrow keys or click backdrop to close
-                </p>
-              )}
+
             </div>
           </div>
         </div>
