@@ -47,22 +47,41 @@
   font-family: 'Inter', 'Geist', Arial, sans-serif;
 }
 
-/* ── Section Header ── */
+/* ── Section Header (description block) ── */
 .gallery-section-header {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
-.gallery-section-header h2 {
-  font-size: 1.15rem;
+/* "PHOTO GALLERY" label with red dash — matches the screenshot style */
+.gallery-section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.gallery-section-label::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 2.5px;
+  background: #e63232;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.gallery-section-label span {
+  color: #e63232;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: #1a3a5c;
-  margin: 0 0 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .gallery-section-header p {
   font-size: 0.9rem;
   color: #444;
-  line-height: 1.6;
+  line-height: 1.65;
   max-width: 780px;
   margin: 0;
 }
@@ -72,25 +91,30 @@
   margin-bottom: 52px;
 }
 
+/* Category title — same red-dash style */
 .gallery-category-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #1a3a5c;
-  margin: 0 0 10px;
-  padding-bottom: 6px;
-  position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
 }
 
-.gallery-category-title::after {
+.gallery-category-title::before {
   content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 44px;
-  height: 3px;
+  display: inline-block;
+  width: 32px;
+  height: 2.5px;
   background: #e63232;
   border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.gallery-category-title span {
+  color: #e63232;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 /* ── Photo Grid ── */
@@ -98,7 +122,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 @media (max-width: 900px) {
@@ -290,7 +314,7 @@
   margin: 0 0 6px;
 }
 
-/* Donate Now button inside lightbox — matches site's donate-btn */
+/* Donate Now button inside lightbox */
 .lightbox-donate-btn {
   display: inline-flex;
   align-items: center;

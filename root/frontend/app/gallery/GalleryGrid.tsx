@@ -26,13 +26,10 @@ export default function GalleryGrid({ categories }: Props) {
     categoryIndex: number;
   } | null>(null);
 
-  // Close on Escape key
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (!lightbox) return;
       if (e.key === "Escape") setLightbox(null);
-
-      // Arrow navigation within category
       if (e.key === "ArrowRight") {
         const cat = categories[lightbox.categoryIndex];
         const next = (lightbox.index + 1) % cat.photos.length;
@@ -52,7 +49,6 @@ export default function GalleryGrid({ categories }: Props) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  // Prevent body scroll when lightbox is open
   useEffect(() => {
     document.body.style.overflow = lightbox ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -70,10 +66,13 @@ export default function GalleryGrid({ categories }: Props) {
 
   return (
     <>
-      {/* ── Category Grids ── */}
       {categories.map((cat, catIdx) => (
         <div key={cat.title} className="gallery-category">
-          <h2 className="gallery-category-title">{cat.title}</h2>
+
+          {/* Red dash + uppercase title */}
+          <div className="gallery-category-title">
+            <span>{cat.title}</span>
+          </div>
 
           <div className="gallery-grid">
             {cat.photos.map((photo, photoIdx) => (
@@ -91,13 +90,10 @@ export default function GalleryGrid({ categories }: Props) {
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 900px) 33vw, 25vw"
                   style={{ objectFit: "cover" }}
-                  className="gallery-card-img"
                 />
-                {/* Red hover overlay */}
                 <div className="gallery-card-overlay" aria-hidden="true">
                   <div className="gallery-card-plus">+</div>
                 </div>
-                {/* Caption bar */}
                 <div className="gallery-card-caption">{photo.caption}</div>
               </button>
             ))}
@@ -105,7 +101,7 @@ export default function GalleryGrid({ categories }: Props) {
         </div>
       ))}
 
-      {/* ── Lightbox ── */}
+      {/* Lightbox */}
       {lightbox && (
         <div
           id="gallery-lightbox"
@@ -116,7 +112,6 @@ export default function GalleryGrid({ categories }: Props) {
           aria-label={`Photo: ${lightbox.photo.caption}`}
         >
           <div className="lightbox-modal">
-            {/* Close button */}
             <button
               id="gallery-lightbox-close"
               className="lightbox-close"
@@ -126,7 +121,6 @@ export default function GalleryGrid({ categories }: Props) {
               ✕
             </button>
 
-            {/* Photo */}
             <div style={{ position: "relative", width: "100%", aspectRatio: "16/9" }}>
               <Image
                 src={lightbox.photo.src}
@@ -138,18 +132,14 @@ export default function GalleryGrid({ categories }: Props) {
               />
             </div>
 
-            {/* Body: caption + counter + donate */}
             <div className="lightbox-body">
               <p className="lightbox-caption-title">{lightbox.photo.caption}</p>
               <p className="lightbox-caption">{lightbox.photo.description}</p>
 
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
-                {/* Image counter */}
                 <span style={{ fontSize: "0.8rem", color: "#888" }}>
                   Image {lightbox.index + 1} of {totalInCategory}
                 </span>
-
-                {/* Donate Now */}
                 <Link
                   href="/donate"
                   id="gallery-lightbox-donate"
@@ -163,7 +153,6 @@ export default function GalleryGrid({ categories }: Props) {
                 </Link>
               </div>
 
-              {/* Arrow navigation hint */}
               {totalInCategory > 1 && (
                 <p style={{ fontSize: "0.75rem", color: "#aaa", marginTop: "10px", marginBottom: 0 }}>
                   Use ← → arrow keys or click backdrop to close
