@@ -31,7 +31,7 @@ export default function ProjectsPage() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#1A1A1A] leading-[1.15] mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#1A1A1A] leading-[1.15] mb-6">
               Field-tested work, funded by trusted partners.
             </h1>
 
