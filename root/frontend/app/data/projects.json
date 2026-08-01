@@ -1,0 +1,115 @@
+{
+  "projects": [
+    {
+      "title": "Integrated Watershed Development Programme",
+      "category": "Watershed",
+      "period": "2019–2024",
+      "location": "Kurnool, Andhra Pradesh",
+      "funder": "NABARD",
+      "description": "Construction of 142 check dams, 87 farm ponds, and 23 rock-fill dams across 12 villages — recharging groundwater for over 4,500 farming households.",
+      "imageSrc": "https://picsum.photos/id/1056/1200/800",
+      "imageAlt": "Watershed landscape with community water project"
+    },
+    {
+      "title": "Farmer Producer Organization (FPO) Promotion",
+      "category": "Agriculture",
+      "period": "2020–Present",
+      "location": "Anantapur & Kurnool",
+      "funder": "NABARD / SFAC",
+      "description": "Mobilized 3,200 smallholder farmers into 4 FPOs, providing market linkages, post-harvest infrastructure and access to institutional credit.",
+      "imageSrc": "https://picsum.photos/id/1018/1200/800",
+      "imageAlt": "Farmers working together in a field"
+    },
+    {
+      "title": "Women-led Nutrition Gardens",
+      "category": "Women",
+      "period": "2022–Present",
+      "location": "Rural Andhra Pradesh",
+      "funder": "Local Trusts",
+      "description": "Supported women’s collectives to build kitchen gardens, improve family nutrition and increase income through vegetable sales.",
+      "imageSrc": "https://picsum.photos/id/1040/1200/800",
+      "imageAlt": "Women tending a small vegetable garden"
+    },
+    {
+      "title": "Child Rights Learning Circles",
+      "category": "Child Rights",
+      "period": "2021–Present",
+      "location": "Kurnool District",
+      "funder": "Community Partners",
+      "description": "Established child-friendly learning circles to promote rights awareness, school retention and safe spaces for marginalized children.",
+      "imageSrc": "https://picsum.photos/id/1025/1200/800",
+      "imageAlt": "Children learning together outside"
+    },
+    {
+      "title": "Community Health and Nutrition Outreach",
+      "category": "Health",
+      "period": "2023–Present",
+      "location": "Panchayat Clusters",
+      "funder": "Health Trust",
+      "description": "Delivered village health camps, nutrition counselling, and maternal care guidance to strengthen wellbeing across remote communities.",
+      "imageSrc": "https://picsum.photos/id/1051/1200/800",
+      "imageAlt": "Health outreach in rural community"
+    }
+  ],
+  "categories": [
+    "All Projects",
+    "Watershed",
+    "Agriculture",
+    "Women",
+    "Child Rights",
+    "Health"
+  ],
+  "programmes": [
+    {
+      "title": "Watershed Development",
+      "category": "Watershed",
+      "icon": "watershed",
+      "period": "2019–2024",
+      "location": "Kurnool, Andhra Pradesh",
+      "funder": "NABARD",
+      "description": "Restoring water security in drought-prone Rayalaseema through hydrological planning, community-led construction, and natural-resource governance.",
+      "imageSrc": "https://picsum.photos/id/1056/1200/800",
+      "imageAlt": "Watershed landscape with community water project",
+      "highlights": [
+        "142+ check dams and 87 farm ponds built",
+        "Treatment of over 22,000 acres of degraded land",
+        "Rock-fill dams, percolation tanks, gully plugs",
+        "Capacity building of Watershed Committees"
+      ]
+    },
+    {
+      "title": "Sustainable Agriculture & FPOs",
+      "category": "Agriculture",
+      "icon": "agriculture",
+      "period": "2020–Present",
+      "location": "Anantapur & Kurnool",
+      "funder": "NABARD / SFAC",
+      "description": "Mobilizing smallholders into Farmer Producer Organizations and championing climate-resilient cropping, millets revival and direct market linkages.",
+      "imageSrc": "https://picsum.photos/id/1018/1200/800",
+      "imageAlt": "Farmers working together in a field",
+      "highlights": [
+        "4 FPOs covering 3,200+ farmers",
+        "Natural farming on 1,200+ acres",
+        "Millet-based cropping demonstrations",
+        "Post-harvest infrastructure & credit access"
+      ]
+    },
+    {
+      "title": "Women-led Nutrition Gardens",
+      "category": "Women",
+      "icon": "women",
+      "period": "2022–Present",
+      "location": "Rural Andhra Pradesh",
+      "funder": "Local Trusts",
+      "description": "Supported women’s collectives to build kitchen gardens, improve family nutrition and increase income through vegetable sales.",
+      "imageSrc": "https://picsum.photos/id/1040/1200/800",
+      "imageAlt": "Women tending a small vegetable garden",
+      "highlights": [
+        "Community gardens built by women’s groups",
+        "Improved household nutrition and food security",
+        "Training in organic vegetable cultivation",
+        "New local market linkages for surplus produce"
+      ]
+    }
+  ]
+}
