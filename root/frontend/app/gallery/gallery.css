@@ -1,70 +1,43 @@
 /* ============================================================
    Gallery Page Styles
+   Matches site palette: bg-[#FBF9F5], section bg-[#F5F2EA]
    ============================================================ */
 
-/* ── Hero Banner ── */
-.gallery-hero {
-  position: relative;
+/* ── Outer wrapper ── */
+.gallery-main {
   width: 100%;
-  height: 220px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #1a3a5c;
+  min-height: 100vh;
+  background: #fbf9f5;
+  font-family: 'Geist', 'Inter', Arial, sans-serif;
 }
 
-.gallery-hero-strip {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  gap: 4px;
-  opacity: 0.45;
+/* ── Page Header Section — warm cream band, left-aligned ── */
+.gallery-header-section {
+  width: 100%;
+  background: #f5f2ea;
+  border-bottom: 1px solid #e5e0d6;
+  padding: 64px 0 56px;
 }
 
-.gallery-hero-strip img {
-  flex: 1;
-  object-fit: cover;
-  height: 100%;
-  width: 0;
-}
-
-.gallery-hero-title {
-  position: relative;
-  z-index: 2;
-  color: #ffffff;
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
-}
-
-/* ── Page Body ── */
-.gallery-page {
+.gallery-header-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 24px 80px;
-  font-family: 'Inter', 'Geist', Arial, sans-serif;
+  padding: 0 24px;
 }
 
-/* ── Section Header (description block) ── */
-.gallery-section-header {
-  margin-bottom: 36px;
-}
-
-/* "PHOTO GALLERY" label with red dash — matches the screenshot style */
+/* "— GALLERY" red label */
 .gallery-section-label {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .gallery-section-label::before {
   content: '';
   display: inline-block;
-  width: 32px;
-  height: 2.5px;
+  width: 28px;
+  height: 2px;
   background: #e63232;
   border-radius: 2px;
   flex-shrink: 0;
@@ -72,18 +45,37 @@
 
 .gallery-section-label span {
   color: #e63232;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-.gallery-section-header p {
-  font-size: 0.9rem;
-  color: #444;
-  line-height: 1.65;
-  max-width: 780px;
+/* Large heading */
+.gallery-header-heading {
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  max-width: 640px;
+  letter-spacing: -0.01em;
+}
+
+/* Subtitle paragraph */
+.gallery-header-sub {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+  max-width: 560px;
   margin: 0;
+}
+
+/* ── Page Body ── */
+.gallery-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
 }
 
 /* ── Category Block ── */
@@ -91,7 +83,7 @@
   margin-bottom: 52px;
 }
 
-/* Category title — same red-dash style */
+/* Category title — red dash + uppercase */
 .gallery-category-title {
   display: flex;
   align-items: center;
@@ -102,8 +94,8 @@
 .gallery-category-title::before {
   content: '';
   display: inline-block;
-  width: 32px;
-  height: 2.5px;
+  width: 28px;
+  height: 2px;
   background: #e63232;
   border-radius: 2px;
   flex-shrink: 0;
@@ -111,9 +103,9 @@
 
 .gallery-category-title span {
   color: #e63232;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -126,26 +118,16 @@
 }
 
 @media (max-width: 900px) {
-  .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 640px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .gallery-hero-title {
-    font-size: 1.6rem;
-  }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery-header-section { padding: 40px 0 36px; }
 }
 
 @media (max-width: 380px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
+  .gallery-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Photo Card ── */
@@ -156,13 +138,13 @@
   cursor: pointer;
   aspect-ratio: 4 / 3;
   background: #ddd;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .gallery-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
 
 .gallery-card img {
@@ -177,11 +159,11 @@
   transform: scale(1.05);
 }
 
-/* Red hover overlay with + icon */
+/* Red hover overlay + plus icon */
 .gallery-card-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(210, 30, 30, 0.62);
+  background: rgba(210, 30, 30, 0.60);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,21 +187,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255,255,255,0.7);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   line-height: 1;
   padding-bottom: 2px;
 }
 
-/* Caption bar at bottom */
+/* Caption bar at bottom of card */
 .gallery-card-caption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(15, 20, 40, 0.82));
+  background: linear-gradient(transparent, rgba(10,14,30,0.80));
   color: #fff;
-  font-size: 0.78rem;
+  font-size: 0.77rem;
   font-weight: 600;
   padding: 28px 10px 10px;
   text-align: center;
@@ -228,13 +210,13 @@
 }
 
 /* ============================================================
-   Lightbox Overlay
+   Lightbox
    ============================================================ */
 
 .lightbox-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(10, 12, 20, 0.82);
+  background: rgba(10,12,20,0.82);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -255,7 +237,7 @@
   overflow: hidden;
   max-width: 800px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   animation: lbSlideIn 0.22s ease;
 }
 
@@ -269,52 +251,42 @@
   top: 12px;
   right: 14px;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.9);
   border: none;
   border-radius: 50%;
   width: 36px;
   height: 36px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #333;
   transition: background 0.15s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
-.lightbox-close:hover {
-  background: #fff;
-  color: #000;
-}
-
-.lightbox-image {
-  width: 100%;
-  max-height: 500px;
-  object-fit: cover;
-  display: block;
-}
+.lightbox-close:hover { background: #fff; color: #000; }
 
 .lightbox-body {
   padding: 18px 24px 24px;
 }
 
+.lightbox-caption-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+}
+
 .lightbox-caption {
   font-size: 0.92rem;
-  color: #444;
+  color: #555;
   line-height: 1.65;
   margin: 0 0 16px;
 }
 
-.lightbox-caption-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #1a3a5c;
-  margin: 0 0 6px;
-}
-
-/* Donate Now button inside lightbox */
+/* Donate Now button — red, matches site */
 .lightbox-donate-btn {
   display: inline-flex;
   align-items: center;
@@ -329,7 +301,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: background 0.18s ease, transform 0.15s ease;
-  box-shadow: 0 2px 10px rgba(230, 50, 50, 0.35);
+  box-shadow: 0 2px 10px rgba(230,50,50,0.3);
 }
 
 .lightbox-donate-btn:hover {
@@ -344,15 +316,6 @@
 }
 
 @media (max-width: 540px) {
-  .lightbox-modal {
-    border-radius: 8px;
-  }
-
-  .lightbox-image {
-    max-height: 280px;
-  }
-
-  .lightbox-body {
-    padding: 14px 16px 18px;
-  }
+  .lightbox-modal { border-radius: 8px; }
+  .lightbox-body { padding: 14px 16px 18px; }
 }

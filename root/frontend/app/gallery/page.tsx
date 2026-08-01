@@ -104,47 +104,31 @@ const GALLERY_DATA: GalleryCategory[] = [
   },
 ];
 
-const HERO_IMAGES = [
-  "https://picsum.photos/seed/nya-h1/400/220",
-  "https://picsum.photos/seed/nya-h2/400/220",
-  "https://picsum.photos/seed/nya-h3/400/220",
-  "https://picsum.photos/seed/nya-h4/400/220",
-  "https://picsum.photos/seed/nya-h5/400/220",
-];
+
 
 export default function GalleryPage() {
   return (
-    <>
-      {/* Hero Banner */}
-      <section className="gallery-hero" aria-label="Photo Gallery hero banner">
-        <div className="gallery-hero-strip" aria-hidden="true">
-          {HERO_IMAGES.map((src, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={i} src={src} alt="" />
-          ))}
-        </div>
-        <h1 className="gallery-hero-title">Photo Gallery</h1>
-      </section>
-
-      {/* Page body */}
-      <div className="gallery-page">
-
-        {/* "PHOTO GALLERY" section label — red dash + red uppercase */}
-        <div className="gallery-section-header">
+    <main className="gallery-main">
+      {/* ── Page Header — warm cream, left-aligned ── */}
+      <section className="gallery-header-section">
+        <div className="gallery-header-inner">
           <div className="gallery-section-label">
-            <span>Photo Gallery</span>
+            <span>Gallery</span>
           </div>
-          <p>
-            We captured the real life of rural children and the communities for
-            you. No photo matches the experience you get when you join us in
-            serving people in need in rural areas. The gallery has images that
-            give you a glimpse of various aspects of our projects &amp; programs.
+          <h1 className="gallery-header-heading">
+            Moments from the field.
+          </h1>
+          <p className="gallery-header-sub">
+            A glimpse of the people, places and progress that shape our work —
+            captured in dust, sunlight and smiles.
           </p>
         </div>
+      </section>
 
-        {/* Category grids + lightbox */}
+      {/* ── Category grids + lightbox ── */}
+      <div className="gallery-page">
         <GalleryGrid categories={GALLERY_DATA} />
       </div>
-    </>
+    </main>
   );
 }
