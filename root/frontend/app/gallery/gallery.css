@@ -52,8 +52,8 @@
 .gallery-section-label::before {
   content: '';
   display: block;
-  height: 3px;
-  width: 64px;
+  height: 1px;           /* h-[1px] */
+  width: 36px;           /* w-9 */
   background: #D95D39;
   flex-shrink: 0;
 }
@@ -123,8 +123,8 @@
 .gallery-category-title::before {
   content: '';
   display: block;
-  height: 3px;
-  width: 48px;
+  height: 1px;
+  width: 36px;
   background: #D95D39;
   flex-shrink: 0;
 }
