@@ -1,0 +1,67 @@
+[
+  {
+    "id": "01",
+    "title": "Watershed Development",
+    "description": "Restoring water security in drought-prone Rayalaseema through hydrological planning, community-led construction, and natural-resource governance.",
+    "features": [
+      "142+ check dams and 87 farm ponds built",
+      "Treatment of over 22,000 acres of degraded land",
+      "Rock-fill dams, percolation tanks, gully plugs",
+      "Capacity building of Watershed Committees"
+    ],
+    "image": "/images/watershed-image.avif",
+    "icon": "/icons/droplet"
+  },
+  {
+    "id": "02",
+    "title": "Sustainable Agriculture & FPOs",
+    "description": "Mobilizing smallholders into Farmer Producer Organizations and championing climate-resilient cropping, millets revival and direct market linkages.",
+    "features": [
+      "4 FPOs covering 3,200+ farmers",
+      "Natural farming on 1,200+ acres",
+      "Millet-based cropping demonstrations",
+      "Post-harvest infrastructure & credit access"
+    ],
+    "image": "/images/watershed-image.avif",
+    "icon": "/icons/leaf"
+  },
+  {
+    "id": "03",
+    "title": "Women's Empowerment",
+    "description": "Federating women into Self-Help Groups, linking them with savings & credit, livelihoods training and leadership roles in village institutions.",
+    "features": [
+      "320 SHGs federated - 4,800 women members",
+      "Microenterprise training & seed capital",
+      "Access to government entitlements (PDS, MGNREGS)",
+      "Leadership in Gram Panchayats"
+    ],
+    "image": "/images/watershed-image.avif",
+    "icon": "/icons/users"
+  },
+  {
+    "id": "04",
+    "title": "Child Rights & Education",
+    "description": "Working with Childline, schools and police to prevent trafficking, end child labour and ensure every child stays in school.",
+    "features": [
+      "Awareness in 86 schools - 14,000 children reached",
+      "47 children rescued & reintegrated",
+      "Bridge education for school dropouts",
+      "Para-legal support to families"
+    ],
+    "image": "/images/watershed-image.avif",
+    "icon": "/icons/child"
+  },
+  {
+    "id": "05",
+    "title": "Health & Nutrition",
+    "description": "Improving maternal and child health through nutrition awareness, health camps, and access to government health services.",
+    "features": [
+      "Nutrition awareness sessions for 5,000+ families",
+      "Health camps conducted in 20 villages",
+      "Linkages with government health schemes",
+      "Training of community health workers"
+    ],
+    "image": "/images/watershed-image.avif",
+    "icon": "/icons/medical"
+  }
+]
