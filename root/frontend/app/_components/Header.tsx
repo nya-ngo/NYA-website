@@ -40,20 +40,26 @@ export default function Header() {
             </h1>
 
             <div className="absolute top-full left-0 pt-2 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md min-w-48 z-50">
-              <Link href="/about/team" className="px-4 py-2 hover:bg-gray-100">
-                Our Team
-              </Link>
               <Link
                 href="/about/mission"
                 className="px-4 py-2 hover:bg-gray-100"
               >
-                Mission
+                Vision, Mission, Goals
+              </Link>
+              <Link href="/about/team" className="px-4 py-2 hover:bg-gray-100">
+                Leadership Team
               </Link>
               <Link
-                href="/about/history"
+                href="/about/legal-status"
                 className="px-4 py-2 hover:bg-gray-100"
               >
-                History
+                Legal & Certifications
+              </Link>
+              <Link
+                href="/about/awards"
+                className="px-4 py-2 hover:bg-gray-100"
+              >
+                Awards & Recognition
               </Link>
             </div>
           </div>
@@ -65,6 +71,9 @@ export default function Header() {
           </h1>
           <h1 className="cursor-pointer hover:text-blue-500">
             <Link href="/gallery">Gallery</Link>
+          </h1>
+          <h1 className="cursor-pointer hover:text-blue-500">
+            <Link href="/partners">Partners</Link>
           </h1>
           <h1 className="cursor-pointer hover:text-blue-500">
             <Link href="/contact">Contact</Link>
