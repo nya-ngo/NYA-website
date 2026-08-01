@@ -4,12 +4,13 @@ import Link from "next/link";
 export default function Footer() {
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
+    { label: "About", href: "/about" },
     { label: "What We Do", href: "/what-we-do" },
-    { label: "Events", href: "/events" },
+    { label: "Projects", href: "/projects" },
     { label: "Gallery", href: "/gallery" },
+    { label: "Supporters", href: "/supporters" },
+    { label: "Legal Status", href: "/legal-status" },
     { label: "Contact", href: "/contact" },
-    { label: "Donate Us", href: "/donate" },
   ];
 
   const socialLinks = [
@@ -48,7 +49,7 @@ export default function Footer() {
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
           <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-          <polygon fill="#1a0a00" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+          <polygon fill="#1C3F36" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
         </svg>
       ),
     },
@@ -66,60 +67,56 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#1a0a00] text-[#f4f0e8] font-sans">
+    <footer style={{ backgroundColor: "#1C3F36" }} className="text-white font-sans">
 
-      {/* Donate nudge bar */}
-      <div className="bg-[#ff0000] flex flex-wrap items-center justify-center gap-4 px-6 py-3">
-        <p className="text-white text-sm font-medium m-0">
-          Every rupee you give helps a farmer grow. Support our mission today.
-        </p>
-        <Link
-          href="/donate"
-          className="bg-white text-[#ff0000] text-sm font-bold px-5 py-2 rounded hover:bg-zinc-100 transition-colors whitespace-nowrap"
-        >
-          Donate now
-        </Link>
-      </div>
-
-      {/* Main grid */}
-      <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      {/* Main grid — 3 columns */}
+      <div className="max-w-6xl mx-auto px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
 
         {/* Col 1: Brand */}
         <div>
-          <Link href="/" className="text-2xl font-extrabold tracking-tight text-[#f4f0e8] mb-3 inline-block">
-            NYA<span className="text-sm font-normal text-[#b5906a] align-super">.ngo</span>
-          </Link>
-          <p className="text-sm text-[#c4b49e] leading-relaxed mb-5 max-w-[220px]">
-            Standing with India&apos;s farmers — for fair prices, better livelihoods, and sustainable agriculture.
+          {/* Logo circle + name */}
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+              <span className="text-white font-bold text-sm">NYA</span>
+            </div>
+            <div>
+              <p className="text-white font-semibold text-base leading-tight">Nava Youth Association</p>
+              <p style={{ color: "#D95D39" }} className="text-xs font-semibold tracking-widest uppercase">
+                Est. 1991
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-white/70 leading-relaxed mb-6 max-w-[260px]">
+            A grassroots non-profit working with rural communities of Andhra Pradesh &amp; Telangana on watershed
+            development, sustainable agriculture, women&apos;s empowerment and child rights.
           </p>
-          <ul className="flex gap-3 list-none p-0 m-0">
-            {socialLinks.map((s) => (
-              <li key={s.label}>
-                <a
-                  href={s.href}
-                  aria-label={s.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#c4b49e] flex items-center justify-center w-9 h-9 border border-[#3d2010] rounded-full hover:text-[#f4f0e8] hover:border-[#c4b49e] transition-colors"
-                >
-                  {s.icon}
-                </a>
-              </li>
-            ))}
-          </ul>
+
+          {/* Support Our Work button */}
+          <Link
+            href="/donate"
+            style={{ backgroundColor: "#D95D39" }}
+            className="inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-3 rounded-full transition-opacity hover:opacity-90 mb-8"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            Support Our Work
+          </Link>
         </div>
 
         {/* Col 2: Quick links */}
         <div>
-          <h3 className="text-xs font-bold tracking-widest uppercase text-[#b5906a] mb-4">
-            Quick Links
-          </h3>
-          <ul className="flex flex-col gap-2 list-none p-0 m-0">
+          <h3 className="text-base font-semibold text-white mb-5">Quick Links</h3>
+          <ul className="flex flex-col gap-3 list-none p-0 m-0">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="text-sm text-[#c4b49e] hover:text-[#f4f0e8] transition-colors no-underline"
+                  className="text-sm text-white/70 no-underline transition-colors"
+                  style={{}}
+                  onMouseEnter={e => (e.currentTarget.style.color = "#D95D39")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
                 >
                   {link.label}
                 </Link>
@@ -128,82 +125,75 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Col 3: Contact */}
+        {/* Col 3: Reach Us */}
         <div>
-          <h3 className="text-xs font-bold tracking-widest uppercase text-[#b5906a] mb-4">
-            Contact
-          </h3>
-          <ul className="flex flex-col gap-4 list-none p-0 m-0">
-            <li className="flex items-start gap-2 text-sm text-[#c4b49e] leading-snug">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 shrink-0 mt-0.5 text-[#b5906a]">
+          <h3 className="text-base font-semibold text-white mb-5">Reach Us</h3>
+          <ul className="flex flex-col gap-5 list-none p-0 m-0">
+            <li className="flex items-start gap-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#D95D39" }}>
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              <span>123 Krishi Marg, Bhubaneswar, Odisha 751001</span>
+              <p className="text-sm text-white/70 leading-snug m-0">
+                Plot No – 413, SilpaNandanavanam,<br />Ulchala Road, Kurnool – 518003, AP, India
+              </p>
             </li>
-            <li className="flex items-center gap-2 text-sm text-[#c4b49e]">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 shrink-0 text-[#b5906a]">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.27 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <a href="tel:+911234567890" className="hover:text-[#f4f0e8] transition-colors">
-                +91 12345 67890
-              </a>
-            </li>
-            <li className="flex items-center gap-2 text-sm text-[#c4b49e]">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 shrink-0 text-[#b5906a]">
+            <li className="flex items-start gap-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#D95D39" }}>
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
-              <a href="mailto:hello@nya-ngo.org" className="hover:text-[#f4f0e8] transition-colors">
-                hello@nya-ngo.org
+              <a
+                href="mailto:navayouth2021@gmail.com"
+                className="text-sm text-white/70 no-underline transition-colors"
+                onMouseEnter={e => (e.currentTarget.style.color = "#D95D39")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+              >
+                navayouth2021@gmail.com
+              </a>
+            </li>
+            <li className="flex items-start gap-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#D95D39" }}>
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.27 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <a
+                href="tel:+919876543210"
+                className="text-sm text-white/70 no-underline transition-colors"
+                onMouseEnter={e => (e.currentTarget.style.color = "#D95D39")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+              >
+                +91 98765 43210
+              </a>
+            </li>
+            <li className="flex items-start gap-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#D95D39" }}>
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <a
+                href="https://www.navayouth.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-white/70 no-underline transition-colors"
+                onMouseEnter={e => (e.currentTarget.style.color = "#D95D39")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+              >
+                www.navayouth.com
               </a>
             </li>
           </ul>
         </div>
-
-        {/* Col 4: Newsletter */}
-        <div>
-          <h3 className="text-xs font-bold tracking-widest uppercase text-[#b5906a] mb-4">
-            Stay Updated
-          </h3>
-          <p className="text-sm text-[#c4b49e] leading-relaxed mb-4">
-            Get updates on farmer welfare programs, crop advisories, and upcoming events.
-          </p>
-          <div className="flex flex-col gap-2">
-            <input
-              type="email"
-              placeholder="Your email address"
-              aria-label="Email for newsletter"
-              className="bg-[#3d2010] border border-[#4a3020] rounded px-3 py-2 text-sm text-[#f4f0e8] placeholder-[#7a6050] outline-none focus:border-[#b5906a] w-full"
-            />
-            <button
-              type="button"
-              className="donate-btn w-full text-sm font-semibold"
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#3d2010] max-w-6xl mx-auto px-6 py-5 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xs text-[#7a6050] m-0">
-          © {new Date().getFullYear()} NYA — Farmer Welfare NGO. All rights reserved.
+      <div className="border-t border-white/10 max-w-6xl mx-auto px-8 py-5 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-xs text-white/40 m-0">
+          © {new Date().getFullYear()} Nava Youth Association · Reg. No. 181/1991 (A.P. Societies Act)
         </p>
-        <ul className="flex flex-wrap gap-5 list-none p-0 m-0">
-          {[
-            { label: "Privacy Policy", href: "/privacy-policy" },
-            { label: "Terms of Use", href: "/terms" },
-            { label: "Sitemap", href: "/sitemap" },
-          ].map((l) => (
-            <li key={l.label}>
-              <Link href={l.href} className="text-xs text-[#7a6050] hover:text-[#c4b49e] transition-colors no-underline">
-                {l.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <p className="text-xs text-white/40 m-0">
+          12A · 80G · FCRA · NITI Aayog Registered
+        </p>
       </div>
     </footer>
   );
