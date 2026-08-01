@@ -52,7 +52,7 @@
 .gallery-section-label::before {
   content: '';
   display: block;
-  height: 1px;           /* h-[1px] */
+  height: 2px;           /* h-[2px] */
   width: 48px;           /* w-12 */
   background: #D95D39;
   flex-shrink: 0;
@@ -123,7 +123,7 @@
 .gallery-category-title::before {
   content: '';
   display: block;
-  height: 1px;
+  height: 2px;
   width: 32px;
   background: #D95D39;
   flex-shrink: 0;
