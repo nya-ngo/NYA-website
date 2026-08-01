@@ -132,25 +132,6 @@ export default function GalleryGrid({ categories }: Props) {
             <div className="lightbox-body">
               <p className="lightbox-caption-title">{lightbox.photo.caption}</p>
               <p className="lightbox-caption">{lightbox.photo.description}</p>
-
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
-                <span style={{ fontSize: "0.8rem", color: "#888" }}>
-                  Image {lightbox.index + 1} of {totalInCategory}
-                </span>
-                <Link
-                  href="/donate"
-                  id="gallery-lightbox-donate"
-                  className="lightbox-donate-btn"
-                  onClick={closePhoto}
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" />
-                  </svg>
-                  Donate Now
-                </Link>
-              </div>
-
-
             </div>
           </div>
         </div>
