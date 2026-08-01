@@ -10,95 +10,129 @@ export const metadata: Metadata = {
 
 const GALLERY_DATA: GalleryCategory[] = [
   {
-    title: "Rural Education and Development (READ) Project",
+    title: "Watershed Development",
     photos: [
       {
-        src: "https://picsum.photos/seed/nya-read1/600/450",
-        caption: "After-School Education Program",
+        src: "https://picsum.photos/seed/nya-ws1/600/450",
+        caption: "Check Dam Construction",
         description:
-          "Our after-school program provides quality tutoring and learning support to children in rural villages, helping them build a brighter future.",
+          "Restoring water security in drought-prone Rayalaseema through hydrological planning, community-led construction and natural-resource governance.",
       },
       {
-        src: "https://picsum.photos/seed/nya-read2/600/450",
-        caption: "Village Knowledge Centre Program",
+        src: "https://picsum.photos/seed/nya-ws2/600/450",
+        caption: "Farm Pond Development",
         description:
-          "Village Knowledge Centres bring computers and internet access to remote communities, bridging the digital divide and empowering local youth.",
+          "Over 22,000 acres of degraded land treated through rock-fill dams, percolation tanks and gully plugs built alongside local communities.",
       },
       {
-        src: "https://picsum.photos/seed/nya-read3/600/450",
-        caption: "V-kid Knowledge Boost Program",
+        src: "https://picsum.photos/seed/nya-ws3/600/450",
+        caption: "Watershed Committee Training",
         description:
-          "The V-kid program delivers interactive learning sessions and educational kits to primary school children, boosting foundational literacy skills.",
+          "Capacity building of village-level Watershed Committees to sustain and manage water infrastructure over the long term.",
       },
       {
-        src: "https://picsum.photos/seed/nya-read4/600/450",
-        caption: "V-kid Scholarship Program",
+        src: "https://picsum.photos/seed/nya-ws4/600/450",
+        caption: "Community Water Harvesting",
         description:
-          "Meritorious students from underprivileged families receive scholarships, enabling them to pursue higher education without financial barriers.",
-      },
-      {
-        src: "https://picsum.photos/seed/nya-read5/600/450",
-        caption: "Child Labor Prevention Program",
-        description:
-          "We work with families and local authorities to identify and rehabilitate child labourers, ensuring every child has the right to education.",
-      },
-      {
-        src: "https://picsum.photos/seed/nya-read6/600/450",
-        caption: "Quality & Value Education Program",
-        description:
-          "This program integrates life-skills, moral values, and creative thinking into the school curriculum, nurturing well-rounded individuals.",
+          "142+ check dams and 87 farm ponds built through participatory planning, ensuring water availability even through dry seasons.",
       },
     ],
   },
   {
-    title: "Building Positive Communities Project",
+    title: "Sustainable Agriculture & FPOs",
     photos: [
       {
-        src: "https://picsum.photos/seed/nya-bpc1/600/450",
-        caption: "Hearts of Serving the Humanity Program",
+        src: "https://picsum.photos/seed/nya-ag1/600/450",
+        caption: "Farmer Producer Organizations",
         description:
-          "Volunteers come together to serve marginalised communities through free health camps, food drives, and community support activities.",
+          "Mobilising smallholders into Farmer Producer Organizations to access better markets, credit and collective bargaining power.",
       },
       {
-        src: "https://picsum.photos/seed/nya-bpc2/600/450",
-        caption: "Community Awareness & Empowerment Program",
+        src: "https://picsum.photos/seed/nya-ag2/600/450",
+        caption: "Natural Farming Demonstrations",
         description:
-          "Workshops empower community members with knowledge about their rights, government schemes, and pathways to self-sufficiency.",
+          "Natural farming practised on 1,200+ acres, reducing input costs and improving soil health for future generations.",
       },
       {
-        src: "https://picsum.photos/seed/nya-bpc3/600/450",
-        caption: "Community Health & Safety Program",
+        src: "https://picsum.photos/seed/nya-ag3/600/450",
+        caption: "Millets Revival Program",
         description:
-          "Regular health screenings, first-aid training, and sanitation awareness campaigns help rural families stay safe and healthy.",
+          "Millet-based cropping demonstrations championing climate-resilient varieties and reviving traditional food security crops.",
       },
       {
-        src: "https://picsum.photos/seed/nya-bpc4/600/450",
-        caption: "Community Swachh Bharat Program",
+        src: "https://picsum.photos/seed/nya-ag4/600/450",
+        caption: "Post-Harvest Infrastructure",
         description:
-          "In alignment with the national Swachh Bharat Mission, our teams organise cleanliness drives and help construct sanitation facilities.",
+          "Supporting 4 FPOs covering 3,200+ farmers with post-harvest storage, processing infrastructure and direct market linkages.",
       },
     ],
   },
   {
-    title: "Women Empowerment Project",
+    title: "Women's Empowerment",
     photos: [
       {
         src: "https://picsum.photos/seed/nya-we1/600/450",
-        caption: "Self-Help Group Formation",
+        caption: "Self-Help Group Federation",
         description:
-          "Women-led Self-Help Groups provide microfinance, skills training, and a support network for rural women entrepreneurs.",
+          "320 SHGs federated with 4,800 women members, linked with savings, credit and leadership roles in village institutions.",
       },
       {
         src: "https://picsum.photos/seed/nya-we2/600/450",
-        caption: "Vocational Training Program",
+        caption: "Microenterprise Training",
         description:
-          "Tailoring, handloom weaving, and food-processing courses equip women with marketable skills and financial independence.",
+          "Livelihoods training and seed capital provided to enable women to start and sustain their own microenterprises.",
       },
       {
         src: "https://picsum.photos/seed/nya-we3/600/450",
-        caption: "Women Leadership Program",
+        caption: "Government Entitlements Access",
         description:
-          "Leadership workshops help women take active roles in village governance, community decision-making, and local advocacy.",
+          "Women supported to access PDS, MGNREGS and other government entitlements through awareness and para-legal support.",
+      },
+    ],
+  },
+  {
+    title: "Child Rights & Education",
+    photos: [
+      {
+        src: "https://picsum.photos/seed/nya-ch1/600/450",
+        caption: "School Awareness Programmes",
+        description:
+          "Awareness programmes conducted in 86 schools reaching 14,000 children on rights, safety and the value of staying in school.",
+      },
+      {
+        src: "https://picsum.photos/seed/nya-ch2/600/450",
+        caption: "Child Rescue & Reintegration",
+        description:
+          "47 children rescued from labour and trafficking situations and reintegrated into family care and formal education.",
+      },
+      {
+        src: "https://picsum.photos/seed/nya-ch3/600/450",
+        caption: "Bridge Education Centres",
+        description:
+          "Bridge education provided to school dropouts to help them re-enter the formal system with age-appropriate learning support.",
+      },
+    ],
+  },
+  {
+    title: "Health & Nutrition",
+    photos: [
+      {
+        src: "https://picsum.photos/seed/nya-hn1/600/450",
+        caption: "Community Health Camps",
+        description:
+          "Health camps conducted in 20 villages providing free check-ups, medicines and referrals for maternal and child health.",
+      },
+      {
+        src: "https://picsum.photos/seed/nya-hn2/600/450",
+        caption: "Nutrition Awareness Sessions",
+        description:
+          "Nutrition awareness sessions reached 5,000+ families with guidance on balanced diets, breastfeeding and child growth monitoring.",
+      },
+      {
+        src: "https://picsum.photos/seed/nya-hn3/600/450",
+        caption: "Community Health Workers",
+        description:
+          "Training of community health workers to deliver frontline health services and link families with government health schemes.",
       },
     ],
   },
