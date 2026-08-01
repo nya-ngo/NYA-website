@@ -91,9 +91,6 @@ export default function GalleryGrid({ categories }: Props) {
                   sizes="(max-width: 640px) 50vw, (max-width: 900px) 33vw, 25vw"
                   style={{ objectFit: "cover" }}
                 />
-                <div className="gallery-card-overlay" aria-hidden="true">
-                  <div className="gallery-card-plus">+</div>
-                </div>
                 <div className="gallery-card-caption">{photo.caption}</div>
               </button>
             ))}

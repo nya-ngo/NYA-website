@@ -1,6 +1,6 @@
 /* ============================================================
    Gallery Page Styles
-   Matches site: bg-[#FBF9F5], section bg-[#F5F2EA], accent #D95D39
+   Matches site layout: max-w-7xl px-6 lg:px-8, bg-[#FBF9F5], #F5F2EA, #D95D39
    ============================================================ */
 
 .gallery-main {
@@ -10,77 +10,101 @@
   font-family: 'Geist', 'Inter', Arial, sans-serif;
 }
 
-/* ── Page Header — warm cream band, left-aligned (matches Projects page) ── */
+/* ── Page Header — exact match to Projects/What-we-do page header ── */
 .gallery-header-section {
   width: 100%;
   background: #f5f2ea;
   border-bottom: 1px solid #e5e0d6;
-  padding: 80px 0 72px;
+  /* py-20 md:py-24 */
+  padding: 80px 0 80px;
 }
 
+/* Outer centering wrapper: mx-auto max-w-7xl px-6 lg:px-8 */
 .gallery-header-inner {
-  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 24px;
-  max-width: 896px;  /* ~max-w-3xl like projects page */
+  max-width: 80rem;       /* max-w-7xl = 1280px */
+  padding: 0 1.5rem;      /* px-6 */
+}
+
+@media (min-width: 1024px) {
+  .gallery-header-inner {
+    padding: 0 2rem;      /* lg:px-8 */
+  }
+}
+
+/* Inner text wrapper: max-w-3xl items-start text-left */
+.gallery-header-text {
+  max-width: 48rem;       /* max-w-3xl = 768px */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
 }
 
-/* "— GALLERY" label — matches Projects page: #D95D39, tracking-[0.2em] */
+/* "— GALLERY" label: exact match to projects page */
 .gallery-section-label {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 16px;             /* gap-4 */
+  margin-bottom: 24px;   /* mb-6 */
 }
 
 .gallery-section-label::before {
   content: '';
   display: block;
-  height: 1px;
-  width: 48px;
+  height: 1px;           /* h-[1px] */
+  width: 48px;           /* w-12 */
   background: #D95D39;
   flex-shrink: 0;
 }
 
 .gallery-section-label span {
   color: #D95D39;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-size: 0.75rem;           /* text-xs */
+  font-weight: 700;             /* font-bold */
+  letter-spacing: 0.2em;        /* tracking-[0.2em] */
   text-transform: uppercase;
 }
 
-/* Main heading — font-serif, NOT bold, matching Projects page h1 */
+/* Main heading: text-3xl md:text-4xl lg:text-5xl font-serif leading-[1.15] mb-6 */
 .gallery-header-heading {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.875rem, 4vw, 3rem);   /* text-3xl → text-5xl */
-  font-weight: 400;                          /* NOT bold — matches font-serif on projects */
+  font-size: 1.875rem;   /* text-3xl */
+  font-weight: 400;      /* not bold — font-serif style */
   color: #1a1a1a;
   line-height: 1.15;
-  margin: 0 0 24px;
-  max-width: 780px;
-  letter-spacing: -0.01em;
+  margin: 0 0 24px;      /* mb-6 */
 }
 
-/* Subtitle — font-light, gray-600, matching Projects page */
+@media (min-width: 768px) {
+  .gallery-header-heading { font-size: 2.25rem; }  /* md:text-4xl */
+}
+
+@media (min-width: 1024px) {
+  .gallery-header-heading { font-size: 3rem; }     /* lg:text-5xl */
+}
+
+/* Subtitle: max-w-2xl text-lg text-gray-600 font-light leading-relaxed */
 .gallery-header-sub {
   font-size: 1.125rem;   /* text-lg */
   font-weight: 300;      /* font-light */
-  color: #4b5563;        /* gray-600 */
-  line-height: 1.7;
-  max-width: 672px;      /* max-w-2xl */
+  color: #4b5563;        /* text-gray-600 */
+  line-height: 1.7;      /* leading-relaxed */
+  max-width: 42rem;      /* max-w-2xl */
   margin: 0;
 }
 
-/* ── Page Body ── */
+/* ── Gallery grid body — same outer layout as projects page ── */
 .gallery-page {
-  max-width: 1100px;
   margin: 0 auto;
-  padding: 48px 24px 80px;
+  max-width: 80rem;      /* max-w-7xl */
+  padding: 48px 1.5rem 80px;   /* px-6 */
+}
+
+@media (min-width: 1024px) {
+  .gallery-page {
+    padding: 48px 2rem 80px;   /* lg:px-8 */
+  }
 }
 
 /* ── Category Block ── */
@@ -88,7 +112,7 @@
   margin-bottom: 52px;
 }
 
-/* Category title — #D95D39 dash + uppercase, matches projects page programme labels */
+/* Category label: same #D95D39 dash + uppercase as projects programme labels */
 .gallery-category-title {
   display: flex;
   align-items: center;
@@ -127,31 +151,31 @@
 
 @media (max-width: 640px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .gallery-header-section { padding: 48px 0 40px; }
-  .gallery-header-heading { font-size: 1.75rem; }
+  .gallery-header-section { padding: 48px 0; }
 }
 
 @media (max-width: 380px) {
   .gallery-grid { grid-template-columns: 1fr; }
 }
 
-/* ── Photo Card ── */
+/* ── Photo Card — hover only scales image, no overlay ── */
 .gallery-card {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   aspect-ratio: 4 / 3;
-  background: #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  background: #e8e4de;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .gallery-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
+/* Image scale on hover — no overlay */
 .gallery-card img {
   width: 100%;
   height: 100%;
@@ -161,41 +185,7 @@
 }
 
 .gallery-card:hover img {
-  transform: scale(1.05);
-}
-
-/* Hover overlay + plus */
-.gallery-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(210, 93, 57, 0.60);   /* #D95D39 tinted overlay */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  border-radius: 10px;
-}
-
-.gallery-card:hover .gallery-card-overlay {
-  opacity: 1;
-}
-
-.gallery-card-plus {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(217, 93, 57, 0.92);
-  color: #fff;
-  font-size: 2rem;
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid rgba(255,255,255,0.7);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-  line-height: 1;
-  padding-bottom: 2px;
+  transform: scale(1.06);
 }
 
 /* Caption bar */
@@ -204,7 +194,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(10,14,30,0.80));
+  background: linear-gradient(transparent, rgba(10,14,30,0.78));
   color: #fff;
   font-size: 0.77rem;
   font-weight: 600;
@@ -238,7 +228,7 @@
 .lightbox-modal {
   position: relative;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   max-width: 800px;
   width: 100%;
@@ -274,33 +264,33 @@
 .lightbox-close:hover { background: #fff; color: #000; }
 
 .lightbox-body {
-  padding: 18px 24px 24px;
+  padding: 20px 24px 24px;
 }
 
 .lightbox-caption-title {
   font-size: 1.05rem;
   font-weight: 700;
   color: #1a1a1a;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
 }
 
 .lightbox-caption {
   font-size: 0.92rem;
   color: #555;
   line-height: 1.65;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
 }
 
-/* Donate Now — matches site's Support Our Work button style (#D95D39) */
+/* Donate button — matches site footer Support button style */
 .lightbox-donate-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: #D95D39;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  padding: 10px 22px;
+  padding: 10px 20px;
   border-radius: 999px;
   border: none;
   cursor: pointer;

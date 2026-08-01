@@ -146,16 +146,18 @@ export default function GalleryPage() {
       {/* ── Page Header — warm cream, left-aligned ── */}
       <section className="gallery-header-section">
         <div className="gallery-header-inner">
-          <div className="gallery-section-label">
-            <span>Gallery</span>
+          <div className="gallery-header-text">
+            <div className="gallery-section-label">
+              <span>Gallery</span>
+            </div>
+            <h1 className="gallery-header-heading">
+              Moments from the field.
+            </h1>
+            <p className="gallery-header-sub">
+              A glimpse of the people, places and progress that shape our work —
+              captured in dust, sunlight and smiles.
+            </p>
           </div>
-          <h1 className="gallery-header-heading">
-            Moments from the field.
-          </h1>
-          <p className="gallery-header-sub">
-            A glimpse of the people, places and progress that shape our work —
-            captured in dust, sunlight and smiles.
-          </p>
         </div>
       </section>
 
