@@ -280,7 +280,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. TRUSTED BY SECTION (Now Animated) */}
+      {/* 5. TRUSTED BY SECTION (Bulletproof Infinite Scroll) */}
       <section className="w-full py-16 bg-[#FBF9F5] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -297,48 +297,34 @@ export default function HomePage() {
         </div>
 
         {/* Marquee Wrapper */}
-        <div className="relative w-full flex overflow-hidden">
-          <div className="animate-scroll items-center gap-16 md:gap-24 opacity-50 grayscale hover:opacity-80 transition-opacity duration-300">
-            {/* First Set of Logos */}
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap pl-16 md:pl-24">
-              SUZLON Foundation
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              NITI Aayog
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              Ministry of Rural Development
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              NABARD
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              World Bank
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              JSW Foundation
-            </span>
-
-            {/* Second Set of Logos (Duplicated for seamless infinite scrolling) */}
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              SUZLON Foundation
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              NITI Aayog
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              Ministry of Rural Development
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              NABARD
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
-              World Bank
-            </span>
-            <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap pr-16 md:pr-24">
-              JSW Foundation
-            </span>
-          </div>
+        <div className="w-full flex overflow-hidden opacity-50 grayscale hover:opacity-80 transition-opacity duration-300">
+          {/* We render 4 separate blocks that EACH slide infinitely. */}
+          {[1, 2, 3, 4].map((set) => (
+            <div
+              key={set}
+              // Used bracket notation for a massive, valid Tailwind gap!
+              className="flex shrink-0 animate-scroll items-center pr-[15rem] md:pr-[30rem]"
+            >
+              <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap pr-16 md:pr-24">
+                SUZLON Foundation
+              </span>
+              <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap pr-16 md:pr-24">
+                NITI Aayog
+              </span>
+              <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap pr-16 md:pr-24">
+                Ministry of Rural Development
+              </span>
+              <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap pr-16 md:pr-24">
+                NABARD
+              </span>
+              <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap pr-16 md:pr-24">
+                World Bank
+              </span>
+              <span className="text-xl md:text-2xl font-bold text-gray-500 whitespace-nowrap">
+                JSW Foundation
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
