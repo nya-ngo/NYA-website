@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import ProjectCard from "../_components/ProjectCard";
 import projectData from "../data/projects.json";
 
@@ -18,22 +17,37 @@ export default function ProjectsPage() {
   }, [activeCategory]);
 
   return (
-    <main className="bg-[#f8f2ea] py-14 text-zinc-900">
-      <section className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-3xl space-y-5 text-center pb-12">
-          <p className="text-sm uppercase tracking-[0.35em] text-[#9c5d2f]">
-            Projects
-          </p>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Field-tested work, funded by trusted partners.
-          </h1>
-          <p className="mx-auto max-w-2xl text-base leading-8 text-zinc-600 sm:text-lg">
-            From watershed restoration to women’s collectives — every project is rooted in evidence,
-            ownership and long-term impact.
-          </p>
-        </div>
+    <main className="w-full flex flex-col font-sans bg-[#FBF9F5] min-h-screen antialiased">
+      {/* 1. TOP HEADER SECTION (Slightly darker background) */}
+      <section className="w-full bg-[#F5F2EA] py-20 md:py-24 border-b border-gray-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl flex flex-col items-start text-left">
+            {/* Eyebrow - Left aligned with single line */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-[1px] w-9 bg-[#D95D39]"></div>
+              <span className="text-[#D95D39] text-xs font-bold tracking-[0.2em] uppercase">
+                Projects
+              </span>
+            </div>
 
-        <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#1A1A1A] leading-[1.15] mb-6">
+              Field-tested work, funded by trusted partners.
+            </h1>
+
+            {/* Subtitle */}
+            <p className="max-w-2xl text-lg text-gray-600 font-light leading-relaxed">
+              From watershed restoration to women’s collectives — every project
+              is rooted in evidence, ownership and long-term impact.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. FILTER & GRID SECTION (Lighter background) */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-8 w-full py-12 md:py-16">
+        {/* Left-aligned Category Buttons */}
+        <div className="mb-12 flex flex-wrap items-center justify-start gap-4">
           {categories.map((category) => {
             const isActive = category === activeCategory;
             return (
@@ -41,10 +55,10 @@ export default function ProjectsPage() {
                 key={category}
                 type="button"
                 onClick={() => setActiveCategory(category)}
-                className={`group inline-flex cursor-pointer items-center justify-center rounded-full px-5 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-orange-400 ${
+                className={`inline-flex cursor-pointer items-center justify-center rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 focus:outline-none ${
                   isActive
-                    ? "bg-[#0f3f35] text-white border border-[#0f3f35] shadow-lg shadow-slate-300"
-                    : "bg-white text-zinc-700 border border-zinc-200 hover:border-orange-500 hover:text-orange-600 hover:bg-white"
+                    ? "bg-[#1C3F36] text-white border border-[#1C3F36] shadow-sm"
+                    : "bg-white text-gray-700 border border-gray-200 hover:border-[#D95D39] hover:text-[#D95D39]"
                 }`}
               >
                 <span>{category}</span>
@@ -53,13 +67,14 @@ export default function ProjectsPage() {
           })}
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        {/* Project Cards Grid */}
+        <div className="grid gap-10 lg:grid-cols-2">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (
               <ProjectCard key={project.title} {...project} />
             ))
           ) : (
-            <div className="col-span-full rounded-[28px] border border-zinc-200 bg-white p-12 text-center text-zinc-600 shadow-sm">
+            <div className="col-span-full rounded-2xl border border-gray-200 bg-white p-12 text-center text-gray-500 shadow-sm font-light">
               No projects found in this category yet.
             </div>
           )}
