@@ -16,8 +16,8 @@ const router = express.Router();
 router.route("/").get(getDonations).post(createDonation);
 router.post("/create-order", createOrder);
 router.post("/verify-payment", verifyPayment);
-router.get("/recent", getRecentDonations);
-router.get("/top", getTopDonations);
+router.get("/recent-donation", getRecentDonations);
+router.get("/top-donations", getTopDonations);
 router
   .route("/:id")
   .get(getDonationById)

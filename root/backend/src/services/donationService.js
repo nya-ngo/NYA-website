@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import Donation from "../models/Donation.js";
 
 export async function listDonations() {
@@ -24,28 +25,27 @@ export async function removeDonation(id) {
 }
 
 export async function createOrder(payload) {
-  const orderId = payload.orderId || `order_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+  const orderId = payload.order_id || crypto.randomUUID();
   return Donation.create({
-    donorName: payload.donorName,
+    name: payload.name,
     email: payload.email,
-    phoneNumber: payload.phoneNumber,
-    panCard: payload.panCard,
+    phonenumber: payload.phonenumber,
+    pancard: payload.pancard,
     amount: payload.amount,
     orderId,
     paymentStatus: "created",
-    message: payload.message,
   });
 }
 
 export async function verifyPayment(orderId, payload) {
   const update = {
-    donorName: payload.donorName,
+    name: payload.name,
     email: payload.email,
-    phoneNumber: payload.phoneNumber,
-    panCard: payload.panCard,
+    phonenumber: payload.phonenumber,
+    pancard: payload.pancard,
     amount: payload.amount,
-    paymentId: payload.paymentId,
-    paymentStatus: payload.paymentStatus,
+    paymentId: payload.payment_id,
+    paymentStatus: payload.payment_status,
   };
 
   return Donation.findOneAndUpdate({ orderId }, update, {
@@ -55,10 +55,7 @@ export async function verifyPayment(orderId, payload) {
 }
 
 export async function getRecentDonations(limit = 5) {
-  return Donation.find()
-    .sort({ createdAt: -1 })
-    .limit(limit)
-    .lean();
+  return Donation.find().sort({ createdAt: -1 }).limit(limit).lean();
 }
 
 export async function getTopDonations(limit = 5) {
