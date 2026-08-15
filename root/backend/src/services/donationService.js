@@ -55,7 +55,10 @@ export async function verifyPayment(orderId, payload) {
 }
 
 export async function getRecentDonations(limit = 5) {
-  return Donation.find().sort({ createdAt: -1 }).limit(limit).lean();
+  return Donation.find({ paymentStatus: "success" })
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .lean();
 }
 
 export async function getTopDonations(limit = 5) {

@@ -47,21 +47,26 @@ export async function getDonationById(req, res, next) {
 
 export async function createDonation(req, res, next) {
   try {
-    const { donorName, email, phoneNumber, panCard, amount, message } =
+  
+    console.log(1)
+    const { name, email, phonenumber, pancard, amount, message,payment_status,order_id,payment_id} =
       req.body;
-
-    if (!donorName || amount == null) {
+    if (!name || amount == null) {
+      
       return res
         .status(400)
         .json({ message: "donorName and amount are required" });
     }
 
     const donation = await createDonationService({
-      donorName,
+      name,
       email,
-      phoneNumber,
-      panCard,
+      phonenumber,
+      pancard,
       amount,
+      orderId:order_id,
+      paymentId:payment_id,
+      paymentStatus:payment_status,
       message,
     });
 

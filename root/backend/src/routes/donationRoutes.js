@@ -12,15 +12,15 @@ import {
 } from "../controllers/donationController.js";
 
 const router = express.Router();
-
+console.log(1)
 router.get("/recent-donation", getRecentDonations);
 router.get("/top-donations", getTopDonations);
 
 router.post("/create-order", createOrder);
 router.post("/verify-payment", verifyPayment);
 
-router.route("/").get(getDonations).post(createDonation);
-
+router.route("/post").post(createDonation)
+router.route("/").get(getDonations)
 router
   .route("/:id")
   .get(getDonationById)
