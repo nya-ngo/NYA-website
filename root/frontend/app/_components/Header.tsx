@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import navigate from "next/navigation";
 import { useRouter } from "next/navigation";
 // import Button from '@mui/material/Button';
@@ -8,13 +8,37 @@ import { useRouter } from "next/navigation";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
+import { changeLanguage } from "./GoogleTranslateScript";
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("en");
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedLang = localStorage.getItem("selectedLanguage");
+      if (savedLang) {
+        setSelectedLang(savedLang);
+      } else {
+        const match = document.cookie.match(/googtrans=\/en\/([a-z]{2})/);
+        if (match && match[1]) {
+          setSelectedLang(match[1]);
+        }
+      }
+    }
+  }, []);
+
+  const handleLanguageSelect = (lang: string) => {
+    setSelectedLang(lang);
+    changeLanguage(lang);
+  };
+
   const handleNavigation = (route: any) => {
     setMenuOpen(false);
     router.push(route);
   };
+
   return (
     <main className="z-50 min-h-full flex flex-col items-center justify-start bg-zinc-50 font-sans">
       <div className="flex items-center md:justify-around justify-between w-full min-h-24">
@@ -36,10 +60,16 @@ export default function Header() {
           </h1>
           <div className="relative group">
             <h1 className="cursor-pointer hover:text-blue-500">
-              <Link href="/about">About Us</Link>
+              About
             </h1>
 
             <div className="absolute top-full left-0 pt-2 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md min-w-48 z-50">
+              <Link
+                href="/about"
+                className="px-4 py-2 hover:bg-gray-100"
+              >
+                About Us
+              </Link>
               <Link
                 href="/about/mission"
                 className="px-4 py-2 hover:bg-gray-100"
@@ -83,10 +113,15 @@ export default function Header() {
           </h1>
         </div>
         <div className="flex h-16 items-center  justify-around lg:mx-8 gap-1">
-          <select className="hidden lg:block h-12 px-3 border rounded-md">
-            <option value="en">English</option>
-            <option value="hi">हिंदी</option>
-            <option value="te">తెలుగు</option>
+          <select
+            value={selectedLang}
+            onChange={(e) => handleLanguageSelect(e.target.value)}
+            className="notranslate hidden lg:block h-12 px-3 border rounded-md cursor-pointer outline-none bg-white text-gray-800 text-sm focus:border-[#D95D39]"
+            translate="no"
+          >
+            <option value="en" className="notranslate" translate="no">English</option>
+            <option value="hi" className="notranslate" translate="no">हिंदी</option>
+            <option value="te" className="notranslate" translate="no">తెలుగు</option>
           </select>
           <button
             className="donate-btn min-w-fit"
@@ -146,8 +181,23 @@ export default function Header() {
           >
             Donate us
           </h1>
+
+          <div className="flex items-center gap-2 mt-2 pt-2 border-t w-full">
+            <span className="text-sm font-medium text-gray-600">Language:</span>
+            <select
+              value={selectedLang}
+              onChange={(e) => handleLanguageSelect(e.target.value)}
+              className="notranslate h-10 px-3 border rounded-md cursor-pointer outline-none bg-white text-gray-800 text-sm focus:border-[#D95D39]"
+              translate="no"
+            >
+              <option value="en" className="notranslate" translate="no">English</option>
+              <option value="hi" className="notranslate" translate="no">हिंदी</option>
+              <option value="te" className="notranslate" translate="no">తెలుగు</option>
+            </select>
+          </div>
         </div>
       )}
     </main>
   );
 }
+

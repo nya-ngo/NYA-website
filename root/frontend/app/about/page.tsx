@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 
 const boardMembers = [
@@ -22,6 +23,10 @@ const goals = [
 ];
 
 export default function AboutPage() {
+  const [showAllBoard, setShowAllBoard] = useState(false);
+
+  const visibleBoardMembers = showAllBoard ? boardMembers : boardMembers.slice(0, 3);
+
   return (
     <main className="font-sans">
 
@@ -133,27 +138,60 @@ export default function AboutPage() {
             mission with experience and accountability.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-            {boardMembers.map((member) => (
-              <div key={member.name} className="flex flex-col">
-                {/* Board member photo — pulled from /public/images/board/{slug}.jpg */}
-                <Image
-                  src={`/images/board/${member.slug}.jpg`}
-                  alt={member.name}
-                  width={400}
-                  height={400}
-                  className="w-full aspect-square rounded-xl mb-3 object-cover"
-                  style={{ backgroundColor: "#E8E3D9" }}
-                />
-                <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39] mb-1">{member.role}</span>
-                <span className="text-sm font-semibold text-zinc-900">{member.name}</span>
-                <span className="text-xs text-zinc-400 mt-0.5">{member.qualification}</span>
+          {/* Member Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 transition-all duration-500">
+            {visibleBoardMembers.map((member) => (
+              <div
+                key={member.name}
+                className="group flex flex-col p-4 rounded-2xl bg-white/70 hover:bg-white border border-zinc-200/60 hover:border-[#D95D39]/30 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+              >
+                {/* Image container with subtle zoom hover */}
+                <div className="overflow-hidden rounded-xl mb-4 aspect-square relative bg-[#E8E3D9]">
+                  <Image
+                    src={`/images/board/${member.slug}.jpg`}
+                    alt={member.name}
+                    width={400}
+                    height={400}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39] mb-1 group-hover:translate-x-0.5 transition-transform">
+                  {member.role}
+                </span>
+                <span className="text-base font-semibold text-zinc-900 group-hover:text-[#D95D39] transition-colors">
+                  {member.name}
+                </span>
+                <span className="text-xs text-zinc-500 mt-1 font-light">
+                  {member.qualification}
+                </span>
               </div>
             ))}
+          </div>
+
+          {/* See More / See Less Button */}
+          <div className="flex justify-center mt-12">
+            <button
+              type="button"
+              onClick={() => setShowAllBoard(!showAllBoard)}
+              className="group inline-flex items-center gap-2 border border-[#D95D39] text-[#D95D39] hover:bg-[#D95D39] hover:text-white px-7 py-3 rounded-full text-xs md:text-sm font-bold tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+            >
+              <span>{showAllBoard ? "See Less" : "See More"}</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                className={`w-4 h-4 transition-transform duration-300 ${
+                  showAllBoard ? "rotate-180" : "group-hover:translate-y-0.5"
+                }`}
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
           </div>
         </div>
       </section>
 
     </main>
   );
-}
+}

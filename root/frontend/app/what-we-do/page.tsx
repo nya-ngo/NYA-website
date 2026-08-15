@@ -18,7 +18,7 @@ export default function WhatWeDoPage() {
             </div>
 
             {/* Main Heading - Updated to #1A1A1A and exact typography scales */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#1A1A1A] leading-[1.15] mb-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif text-[#1A1A1A] leading-[1.15] mb-6">
               Five programmes, woven together by one principle: communities
               lead, we walk beside.
             </h1>

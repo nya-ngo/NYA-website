@@ -67,11 +67,14 @@ export default function GalleryGrid({ categories }: Props) {
   return (
     <>
       {categories.map((cat, catIdx) => (
-        <div key={cat.title} className="gallery-category">
+        <div key={cat.title} className="mb-14">
 
-          {/* Red dash + uppercase title */}
-          <div className="gallery-category-title">
-            <span>{cat.title}</span>
+          {/* Red dash + uppercase category kicker */}
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-8 h-px bg-[#D95D39]" />
+            <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39]">
+              {cat.title}
+            </span>
           </div>
 
           <div className="gallery-grid">
@@ -129,9 +132,13 @@ export default function GalleryGrid({ categories }: Props) {
               />
             </div>
 
-            <div className="lightbox-body">
-              <p className="lightbox-caption-title">{lightbox.photo.caption}</p>
-              <p className="lightbox-caption">{lightbox.photo.description}</p>
+            <div className="p-6 md:p-8 bg-white">
+              <h3 className="text-xl md:text-2xl font-serif text-zinc-900 mb-2">
+                {lightbox.photo.caption}
+              </h3>
+              <p className="text-zinc-600 text-sm md:text-base leading-relaxed font-light">
+                {lightbox.photo.description}
+              </p>
             </div>
           </div>
         </div>

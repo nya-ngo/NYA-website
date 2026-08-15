@@ -142,18 +142,24 @@ const GALLERY_DATA: GalleryCategory[] = [
 
 export default function GalleryPage() {
   return (
-    <main className="gallery-main">
-      {/* ── Page Header — warm cream, left-aligned ── */}
-      <section className="gallery-header-section">
-        <div className="gallery-header-inner">
-          <div className="gallery-header-text">
-            <div className="gallery-section-label">
-              <span>Gallery</span>
+    <main className="w-full flex flex-col font-sans bg-[#FBF9F5] min-h-screen antialiased">
+      {/* ── 1. HERO SECTION (Matching About, Contact, Partners, Awards exact font sizes and paddings) ── */}
+      <section
+        style={{ backgroundColor: "#F5F2EA" }}
+        className="px-6 md:px-16 lg:px-28 xl:px-36 pt-20 pb-16"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="w-8 h-px bg-[#D95D39]" />
+              <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39]">
+                Gallery
+              </span>
             </div>
-            <h1 className="gallery-header-heading">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif text-zinc-900 leading-tight mb-8">
               Moments from the field.
             </h1>
-            <p className="gallery-header-sub">
+            <p className="text-zinc-600 text-lg leading-relaxed">
               A glimpse of the people, places and progress that shape our work —
               captured in dust, sunlight and smiles.
             </p>
@@ -161,10 +167,16 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* ── Category grids + lightbox ── */}
-      <div className="gallery-page">
-        <GalleryGrid categories={GALLERY_DATA} />
-      </div>
+      {/* ── 2. CATEGORY GRIDS + LIGHTBOX ── */}
+      <section
+        style={{ backgroundColor: "#FBF9F5" }}
+        className="px-6 md:px-16 lg:px-28 xl:px-36 py-20"
+      >
+        <div className="max-w-6xl mx-auto">
+          <GalleryGrid categories={GALLERY_DATA} />
+        </div>
+      </section>
     </main>
   );
 }
+

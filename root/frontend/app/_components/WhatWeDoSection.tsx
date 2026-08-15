@@ -54,7 +54,7 @@ export default function WhatWeDo({
           </span>
         </div>
 
-        <h3 className="text-3xl lg:text-4xl font-serif text-gray-800 mb-6">
+        <h3 className="text-2xl lg:text-3xl font-serif text-gray-800 mb-6">
           {title}
         </h3>
 
