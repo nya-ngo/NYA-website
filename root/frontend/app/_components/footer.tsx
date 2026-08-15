@@ -8,8 +8,8 @@ export default function Footer() {
     { label: "What We Do", href: "/what-we-do" },
     { label: "Projects", href: "/projects" },
     { label: "Gallery", href: "/gallery" },
-    { label: "Supporters", href: "/supporters" },
-    { label: "Legal Status", href: "/about/legal-status" },
+    { label: "Supporters", href: "/our-partners" },
+    { label: "Legal Status", href: "/legal-status" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -61,10 +61,6 @@ export default function Footer() {
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
           <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-          <polygon
-            fill="#1C3F36"
-            points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
-          />
         </svg>
       ),
     },
@@ -82,14 +78,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer
-      style={{ backgroundColor: "#1C3F36" }}
-      className="text-white font-sans"
-    >
-      {/* Main grid — 3 columns */}
-      <div className="max-w-6xl mx-auto px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-        {/* Col 1: Brand */}
-        <div>
+    <footer style={{ backgroundColor: "#1C3F36" }} className="text-white font-sans w-full">
+      {/* Main container — flex justify-between for perfectly equal spacing between all 4 sections */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-14 flex flex-col md:flex-row justify-between items-start gap-10 md:gap-6">
+        {/* Col 1: Brand (Nava Youth Association) */}
+        <div className="flex flex-col max-w-xs shrink-0">
           {/* Logo circle + name */}
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
@@ -107,18 +100,16 @@ export default function Footer() {
               </p>
             </div>
           </div>
-
-          <p className="text-sm text-white/70 leading-relaxed mb-6 max-w-[260px]">
-            A grassroots non-profit working with rural communities of Andhra
-            Pradesh &amp; Telangana on watershed development, sustainable
-            agriculture, women&apos;s empowerment and child rights.
+          <p className="text-sm text-white/70 leading-relaxed mb-6">
+            A grassroots non-profit working with rural communities of Andhra Pradesh &amp; Telangana on watershed
+            development, sustainable agriculture, women&apos;s empowerment and child rights.
           </p>
 
           {/* Support Our Work button */}
           <Link
             href="/donate"
             style={{ backgroundColor: "#D95D39" }}
-            className="inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-3 rounded-full transition-opacity hover:opacity-90 mb-8"
+            className="inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-3 rounded-full transition-opacity hover:opacity-90 self-start"
           >
             <svg
               viewBox="0 0 24 24"
@@ -132,25 +123,17 @@ export default function Footer() {
             Support Our Work
           </Link>
         </div>
-
-        {/* Col 2: Quick links */}
-        <div>
-          <h3 className="text-base font-semibold text-white mb-5">
-            Quick Links
-          </h3>
+        {/* Col 2: Quick Links */}
+        <div className="flex flex-col shrink-0">
+          <h3 className="text-base font-semibold text-white mb-5">Quick Links</h3>
           <ul className="flex flex-col gap-3 list-none p-0 m-0">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
                   className="text-sm text-white/70 no-underline transition-colors"
-                  style={{}}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "#D95D39")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "rgba(255,255,255,0.7)")
-                  }
+                  onMouseEnter={e => (e.currentTarget.style.color = "#D95D39")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
                 >
                   {link.label}
                 </Link>
@@ -159,8 +142,32 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Col 3: Reach Us */}
-        <div>
+        {/* Col 3: Follow Us */}
+        <div className="flex flex-col shrink-0">
+          <h3 className="text-base font-semibold text-white mb-5">Follow Us</h3>
+          <ul className="flex flex-col gap-3 list-none p-0 m-0">
+            {socialLinks.map((social) => (
+              <li key={social.label}>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 text-sm text-white/70 no-underline transition-colors"
+                  onMouseEnter={e => (e.currentTarget.style.color = "#D95D39")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+                >
+                  <span className="w-4 h-4 flex items-center justify-center shrink-0" style={{ color: "#D95D39" }}>
+                    {social.icon}
+                  </span>
+                  {social.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Col 4: Reach Us / Contact Us */}
+        <div className="flex flex-col max-w-xs shrink-0">
           <h3 className="text-base font-semibold text-white mb-5">Reach Us</h3>
           <ul className="flex flex-col gap-5 list-none p-0 m-0">
             <li className="flex items-start gap-3">
@@ -257,7 +264,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10 max-w-6xl mx-auto px-8 py-5 flex flex-wrap items-center justify-between gap-3">
+      <div className="border-t border-white/10 max-w-7xl mx-auto px-6 sm:px-8 py-5 flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs text-white/40 m-0">
           © {new Date().getFullYear()} Nava Youth Association · Reg. No.
           181/1991 (A.P. Societies Act)
