@@ -83,89 +83,99 @@ export default function AwardsPage() {
       {/* ── 1. HERO SECTION ── */}
       <section
         style={{ backgroundColor: "#F5F2EA" }}
-        className="px-6 md:px-16 lg:px-28 xl:px-36 pt-24 pb-20 border-b border-[#FDF2ED]"
+        className="px-6 md:px-16 lg:px-28 xl:px-36 pt-20 pb-16"
       >
-        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-          <div className="flex items-center gap-2 mb-6">
-            <span className="w-8 h-px bg-[#D95D39]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39]">
-              Awards & Recognition
-            </span>
-            <span className="w-8 h-px bg-[#D95D39]" />
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="w-8 h-px bg-[#D95D39]" />
+              <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39]">
+                Awards & Recognition
+              </span>
+            </div>
+
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif text-zinc-900 leading-tight mb-8">
+              A Legacy of Excellence
+            </h1>
+
+            <p className="text-zinc-600 text-lg leading-relaxed">
+              Over three decades of grassroots dedication recognized by state
+              governments, central ministries, NABARD, and esteemed CSR institutions.
+            </p>
           </div>
-
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#1A1A1A] leading-tight mb-6">
-            A Legacy of Excellence
-          </h1>
-
-          <p className="text-gray-600 text-base md:text-lg max-w-2xl">
-            Over three decades of grassroots dedication recognized by state
-            governments, central ministries, NABARD, and esteemed CSR institutions.
-          </p>
         </div>
       </section>
 
       {/* ── 2. AWARDS TIMELINE SECTION ── */}
-      <section className="mx-auto max-w-5xl px-6 lg:px-8 w-full py-20 md:py-28">
-        <div className="relative border-l-2 border-[#FDF2ED] ml-4 md:ml-8 pl-8 md:pl-12 space-y-16">
-          
-          {awardsData.map((award, index) => (
-            <div key={index} className="relative group">
-              
-              {/* Timeline Marker (Dot) */}
-              <div className="absolute -left-[43px] md:-left-[59px] top-6 w-5 h-5 bg-[#FBF9F5] border-4 border-[#D95D39] rounded-full group-hover:scale-125 transition-transform duration-300 pointer-events-none"></div>
-
-              {/* Award Content Card (Clickable) */}
-              <div 
-                onClick={() => setSelectedAward(award)}
-                className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gray-100 flex flex-col md:flex-row items-start gap-8 transition-all hover:shadow-xl hover:border-[#D95D39]/20 hover:-translate-y-1 duration-300 relative overflow-hidden cursor-pointer"
-              >
+      <section
+        style={{ backgroundColor: "#FBF9F5" }}
+        className="px-6 md:px-16 lg:px-28 xl:px-36 py-20"
+      >
+        <div className="max-w-6xl mx-auto w-full">
+          {/* Restored to 2px thickness, but made brighter with a transparent rust-orange color */}
+          <div className="relative border-l-2 border-[#D95D39]/40 ml-4 md:ml-8 pl-8 md:pl-12 space-y-16">
+            
+            {awardsData.map((award, index) => (
+              <div key={index} className="relative group">
                 
-                {/* Subtle Background Accent */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDF2ED] rounded-bl-full opacity-50 pointer-events-none transition-transform group-hover:scale-110 duration-500"></div>
+                {/* Timeline Marker (Dot) - Perfect math alignment for the 2px line */}
+                <div className="absolute -left-[43px] md:-left-[59px] top-6 w-6 h-6 bg-[#FBF9F5] border-[4px] border-[#D95D39] rounded-full group-hover:scale-110 transition-transform duration-300 pointer-events-none z-10"></div>
 
-                {/* Left Side: Icon & Year */}
-                <div className="flex flex-col items-center gap-4 shrink-0 z-10 pointer-events-none">
-                  <div className="w-16 h-16 rounded-full bg-[#FDF2ED] text-[#D95D39] flex items-center justify-center shadow-inner">
-                    {award.icon}
-                  </div>
-                  <div className="bg-[#F3F4F1] px-4 py-1.5 rounded-full border border-gray-200">
-                    <span className="text-xs text-[#1C3F36] font-bold tracking-wide">
-                      {award.year}
-                    </span>
-                  </div>
-                </div>
+                {/* Award Content Card (Clickable) */}
+                <div 
+                  onClick={() => setSelectedAward(award)}
+                  className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-zinc-200/80 flex flex-col md:flex-row items-start gap-8 transition-all hover:shadow-xl hover:border-[#D95D39]/20 hover:-translate-y-1 duration-300 relative overflow-hidden cursor-pointer"
+                >
+                  
+                  {/* Subtle Background Accent */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDF2ED] rounded-bl-full opacity-50 pointer-events-none transition-transform group-hover:scale-110 duration-500"></div>
 
-                {/* Right Side: Content */}
-                <div className="flex flex-col flex-grow z-10 w-full pointer-events-none">
-                  <div className="flex flex-col gap-2 mb-3">
-                    <span className="text-[#D95D39] text-[10px] md:text-xs font-bold tracking-widest uppercase">
-                      {award.authority}
-                    </span>
-                    <h3 className="text-2xl font-serif text-[#1A1A1A]">
-                      {award.title}
-                    </h3>
+                  {/* Left Side: Icon & Year */}
+                  <div className="flex flex-col items-center gap-4 shrink-0 z-10 pointer-events-none">
+                    <div className="w-16 h-16 rounded-full bg-[#FDF2ED] text-[#D95D39] flex items-center justify-center shadow-inner">
+                      {award.icon}
+                    </div>
+                    <div className="bg-[#F3F4F1] px-4 py-1.5 rounded-full border border-gray-200">
+                      <span className="text-xs text-[#1C3F36] font-bold tracking-wide">
+                        {award.year}
+                      </span>
+                    </div>
                   </div>
 
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6 font-light max-w-2xl">
-                    {award.description}
-                  </p>
+                  {/* Right Side: Content */}
+                  <div className="flex flex-col flex-grow z-10 w-full pointer-events-none">
+                    <div className="flex flex-col gap-2 mb-3">
+                      <span className="text-[#D95D39] text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                        {award.authority}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-serif text-zinc-900">
+                        {award.title}
+                      </h3>
+                    </div>
 
-                  <div className="inline-flex items-center rounded-full bg-[#FDF2ED] px-4 py-1.5 w-fit">
-                    <span className="text-[10px] text-gray-500 font-bold tracking-wider mr-2">CATEGORY:</span>
-                    <span className="text-xs text-[#D95D39] font-bold tracking-wide">
-                      {award.category}
-                    </span>
+                    <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-6 font-light max-w-2xl">
+                      {award.description}
+                    </p>
+
+                    <div className="inline-flex items-center rounded-full bg-[#FDF2ED] px-4 py-1.5 w-fit">
+                      <span className="text-[10px] text-gray-500 font-bold tracking-wider mr-2">CATEGORY:</span>
+                      <span className="text-xs text-[#D95D39] font-bold tracking-wide">
+                        {award.category}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── 3. SUMMARY STATS BANNER ── */}
-      <section className="w-full pb-24 bg-[#FBF9F5] px-6 lg:px-8">
+      <section
+        style={{ backgroundColor: "#FBF9F5" }}
+        className="px-6 md:px-16 lg:px-28 xl:px-36 pb-20"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="bg-[#1C3F36] rounded-[2rem] p-10 md:p-14 shadow-xl relative overflow-hidden">
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
