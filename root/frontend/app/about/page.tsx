@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const boardMembers = [
   { name: "K. Venugopal Reddy", role: "President", qualification: "M.A. Sociology", slug: "img1" },
@@ -193,6 +194,76 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Section 6: Quick Navigation Cards (Legal & Certifications + Awards & Recognition) ── */}
+      <section style={{ backgroundColor: "#FBF9F5" }} className="px-6 md:px-16 lg:px-28 xl:px-36 py-20 border-t border-zinc-200/60">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          {/* Card 1: Legal & Certifications */}
+          <Link
+            href="/about/legal-status"
+            className="group rounded-3xl p-8 md:p-10 bg-white border border-zinc-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#D95D39]/30 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDF2ED] rounded-bl-full opacity-60 pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+
+            <div>
+              {/* <div className="flex items-center gap-2 mb-4">
+                <span className="w-8 h-px bg-[#D95D39]" />
+                <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39]">
+                  COMPLIANCE & GOVERNANCE
+                </span>
+              </div> */}
+              <h3 className="text-2xl font-serif text-zinc-900 mb-3 group-hover:text-[#D95D39] transition-colors">
+                Legal & Certifications
+              </h3>
+              <p className="text-zinc-600 text-sm md:text-base leading-relaxed font-light mb-6">
+                Registered under the A.P. Societies Act, 12A, 80G, FCRA & NITI Aayog Darpan — ensuring transparency, statutory compliance, and institutional accountability.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-[#D95D39] group-hover:translate-x-1 transition-transform">
+              <span>View Certifications & Reports</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </div>
+          </Link>
+
+          {/* Card 2: Awards & Recognition */}
+          <Link
+            href="/about/awards"
+            className="group rounded-3xl p-8 md:p-10 bg-white border border-zinc-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#D95D39]/30 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDF2ED] rounded-bl-full opacity-60 pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+
+            <div>
+              {/* <div className="flex items-center gap-2 mb-4">
+                <span className="w-8 h-px bg-[#D95D39]" />
+                <span className="text-xs font-bold tracking-widest uppercase text-[#D95D39]">
+                  ACCOLADES & MILESTONES
+                </span>
+              </div> */}
+              <h3 className="text-2xl font-serif text-zinc-900 mb-3 group-hover:text-[#D95D39] transition-colors">
+                Awards & Recognition
+              </h3>
+              <p className="text-zinc-600 text-sm md:text-base leading-relaxed font-light mb-6">
+                Over three decades of grassroots dedication honored by State Governments, NABARD, NITI Aayog, and esteemed CSR foundation partners.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-[#D95D39] group-hover:translate-x-1 transition-transform">
+              <span>Explore Awards Timeline</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </div>
+          </Link>
+
+        </div>
+      </section>
+
     </main>
   );
-}
+}
+
