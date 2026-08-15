@@ -65,13 +65,13 @@ export default function AboutPage() {
       </section>
 
       {/* ── Section 3: Vision + Mission — dark cream ── */}
-      <section style={{ backgroundColor: "#F5F2EA" }} className="px-6 md:px-16 lg:px-28 xl:px-36 py-16">
+      <section id="vision-mission-goals" style={{ backgroundColor: "#F5F2EA" }} className="px-6 md:px-16 lg:px-28 xl:px-36 py-16">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Vision */}
-          <div className="border border-zinc-200 rounded-2xl p-8 bg-white">
+          <div className="group border border-zinc-200/80 rounded-2xl p-8 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#D95D39]/40 transition-all duration-300 cursor-pointer relative overflow-hidden">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full border-2 border-[#D95D39] flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#D95D39" strokeWidth="2" className="w-4 h-4">
+              <div className="w-8 h-8 rounded-full border-2 border-[#D95D39] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#FDF2ED] transition-all duration-300">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#D95D39" strokeWidth="2" className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300">
                   <circle cx="12" cy="12" r="3" />
                   <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
                 </svg>
@@ -84,16 +84,17 @@ export default function AboutPage() {
           </div>
 
           {/* Mission */}
-          <div className="rounded-2xl p-8 bg-[#1C3F36] text-white">
+          <div className="group rounded-2xl p-8 bg-[#1C3F36] text-white shadow-sm hover:shadow-2xl hover:-translate-y-1.5 border border-transparent hover:border-emerald-500/30 transition-all duration-300 cursor-pointer relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full pointer-events-none group-hover:scale-125 transition-transform duration-500" />
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full border-2 border-[#D95D39] flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#D95D39" strokeWidth="2" className="w-4 h-4">
+              <div className="w-8 h-8 rounded-full border-2 border-[#D95D39] flex items-center justify-center group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#D95D39" strokeWidth="2" className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300">
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                 </svg>
               </div>
               <span className="text-xs font-bold tracking-widest uppercase text-red-400">Mission</span>
             </div>
-            <p className="text-zinc-100 text-xl font-serif leading-relaxed">
+            <p className="text-zinc-100 text-xl font-serif leading-relaxed relative z-10">
               Building capacities of vulnerable sections through cooperative action — improving quality of life and
               optimizing natural resource management through sustainable, evidence-based interventions.
             </p>
@@ -126,7 +127,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Section 5: Board of Directors — dark cream ── */}
-      <section style={{ backgroundColor: "#F5F2EA" }} className="px-6 md:px-16 lg:px-28 xl:px-36 py-16">
+      <section id="board-of-directors" style={{ backgroundColor: "#F5F2EA" }} className="px-6 md:px-16 lg:px-28 xl:px-36 py-16">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-4">
             <span className="w-8 h-px bg-[#D95D39]" />

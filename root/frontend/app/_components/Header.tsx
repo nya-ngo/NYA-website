@@ -71,12 +71,15 @@ export default function Header() {
                 About Us
               </Link>
               <Link
-                href="/about/mission"
+                href="/about#vision-mission-goals"
                 className="px-4 py-2 hover:bg-gray-100"
               >
                 Vision, Mission, Goals
               </Link>
-              <Link href="/about/team" className="px-4 py-2 hover:bg-gray-100">
+              <Link
+                href="/about#board-of-directors"
+                className="px-4 py-2 hover:bg-gray-100"
+              >
                 Leadership Team
               </Link>
               <Link
