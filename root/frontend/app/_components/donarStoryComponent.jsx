@@ -10,9 +10,10 @@ const STORIES= [
 ];
 
 const C = {
-  heading: "#1a5c45", ctaBg: "#1a3d2e", ctaButton: "#c9e35c",
-  border: "#e3e1d8", avatarBg: "#d4ead8", amountBg: "#f0f8f3",
-  amountBorder: "#c5e0cc", dotActive: "#1a5c45", dotIdle: "#e3e1d8",
+  heading: "#1A1A18", ctaBg: "#1A1A18", ctaButton: "#D94A2B",
+  border: "#E7E4DA", avatarBg: "#F4E4DB", amountBg: "#FBF3EC",
+  amountBorder: "#EAD9CC", dotActive: "#C1502E", dotIdle: "#E7E4DA",
+  accent: "#C1502E", label: "#8C8B83",
 };
 
 const INTERVAL_MS = 10_000;
@@ -20,17 +21,17 @@ const INTERVAL_MS = 10_000;
 function StoryCard({ story }) {
   return (
     <div style={{ borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, padding: "32px 4px" }}>
-      <p style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: 18, color: "#111", lineHeight: 1.65, fontStyle: "italic", marginBottom: 24 }}>
+      <p style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: 18, color: "#1A1A18", lineHeight: 1.65, fontStyle: "italic", marginBottom: 24 }}>
         &ldquo;{story.quote}&rdquo;
       </p>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <div style={{ width: 42, height: 42, borderRadius: "50%", background: C.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: C.heading, flexShrink: 0 }}>
+        <div style={{ width: 42, height: 42, borderRadius: "50%", background: C.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: C.accent, flexShrink: 0 }}>
           {story.initials}
         </div>
         <div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: "#111" }}>{story.name}</div>
-          <div style={{ fontSize: 12, color: "#888", marginTop: 2 }}>{story.city} &middot; {story.since}</div>
-          <span style={{ display: "inline-block", marginTop: 6, background: C.amountBg, color: C.heading, fontSize: 12, fontWeight: 700, padding: "3px 10px", borderRadius: 20, border: `1px solid ${C.amountBorder}` }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: "#1A1A18" }}>{story.name}</div>
+          <div style={{ fontSize: 12, color: C.label, marginTop: 2 }}>{story.city} &middot; {story.since}</div>
+          <span style={{ display: "inline-block", marginTop: 6, background: C.amountBg, color: C.accent, fontSize: 12, fontWeight: 700, padding: "3px 10px", borderRadius: 20, border: `1px solid ${C.amountBorder}` }}>
             {story.amount}
           </span>
         </div>
@@ -82,21 +83,21 @@ export default function DonorStories({
   const handleMouseEnter = () => { elapsedRef.current += Date.now() - startRef.current; setPaused(true); };
   const handleMouseLeave = () => { startRef.current = Date.now(); setPaused(false); };
 
-//   const navBtnStyle: React.CSSProperties = {
-//     width: 36, height: 36, borderRadius: "50%", border: `1px solid ${C.border}`,
-//     background: "#fff", cursor: "pointer", fontSize: 16, color: C.heading,
-//     display: "flex", alignItems: "center", justifyContent: "center", transition: "border-color 0.15s",
-//   };
+  const navBtnStyle = {
+    width: 36, height: 36, borderRadius: "50%", border: `1px solid ${C.border}`,
+    background: "#fff", cursor: "pointer", fontSize: 16, color: C.heading,
+    display: "flex", alignItems: "center", justifyContent: "center", transition: "border-color 0.15s",
+  };
 
   return (
     <div className="max-w-4xl" style={{ margin: "0 auto", padding: "20px 20px 0", fontFamily: "'Arial', sans-serif", background: "#fff" }}>
-      <span style={{ display: "inline-block", background: "#111", color: "#fff", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", padding: "4px 10px", borderRadius: 3 }}>
+      <span style={{ display: "inline-block", background: "#1A1A18", color: "#fff", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", padding: "4px 10px", borderRadius: 3 }}>
         Donor stories
       </span>
       <h2 style={{ color: C.heading, fontSize: 32, fontWeight: 400, margin: "10px 0 0", fontFamily: "Georgia, 'Times New Roman', serif" }}>
         Voices from our community
       </h2>
-      <div style={{ width: 48, height: 4, background: C.heading, margin: "14px 0 32px", borderRadius: 2 }} />
+      <div style={{ width: 48, height: 4, background: C.accent, margin: "14px 0 32px", borderRadius: 2 }} />
 
       <div style={{ overflow: "hidden", width: "100%" }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <div style={{ display: "flex", transform: `translateX(-${current * 100}%)`, transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
@@ -109,7 +110,7 @@ export default function DonorStories({
       </div>
 
       <div style={{ width: "100%", height: 2, background: C.dotIdle, marginTop: 16, borderRadius: 2, overflow: "hidden" }}>
-        <div style={{ height: "100%", width: `${progress}%`, background: C.heading, borderRadius: 2, transition: "width 0.08s linear" }} />
+        <div style={{ height: "100%", width: `${progress}%`, background: C.accent, borderRadius: 2, transition: "width 0.08s linear" }} />
       </div>
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 16 }}>
@@ -119,8 +120,8 @@ export default function DonorStories({
           ))}
         </div>
         <div style={{ display: "flex", gap: 10 }}>
-          <button onClick={() => goTo(current - 1)} aria-label="Previous story"  onMouseEnter={e => (e.currentTarget.style.borderColor = C.heading)} onMouseLeave={e => (e.currentTarget.style.borderColor = C.border)}>&#8592;</button>
-          <button onClick={() => goTo(current + 1)} aria-label="Next story"  onMouseEnter={e => (e.currentTarget.style.borderColor = C.heading)} onMouseLeave={e => (e.currentTarget.style.borderColor = C.border)}>&#8594;</button>
+          <button style={navBtnStyle} onClick={() => goTo(current - 1)} aria-label="Previous story" onMouseEnter={e => (e.currentTarget.style.borderColor = C.accent)} onMouseLeave={e => (e.currentTarget.style.borderColor = C.border)}>&#8592;</button>
+          <button style={navBtnStyle} onClick={() => goTo(current + 1)} aria-label="Next story" onMouseEnter={e => (e.currentTarget.style.borderColor = C.accent)} onMouseLeave={e => (e.currentTarget.style.borderColor = C.border)}>&#8594;</button>
         </div>
       </div>
 

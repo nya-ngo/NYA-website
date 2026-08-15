@@ -1,201 +1,466 @@
+
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import navigate from "next/navigation";
-import { useRouter } from "next/navigation";
-// import Button from '@mui/material/Button';
-// import DeleteIcon from '@mui/icons-material/Delete';
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Link from "next/link";
 import { changeLanguage } from "./GoogleTranslateScript";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [aboutHovered, setAboutHovered] = useState(false);
   const [selectedLang, setSelectedLang] = useState("en");
+
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedLang = localStorage.getItem("selectedLanguage");
-      if (savedLang) {
-        setSelectedLang(savedLang);
-      } else {
-        const match = document.cookie.match(/googtrans=\/en\/([a-z]{2})/);
-        if (match && match[1]) {
-          setSelectedLang(match[1]);
-        }
-      }
+    if (typeof window === "undefined") return;
+
+    const savedLang = localStorage.getItem("selectedLanguage");
+
+    if (savedLang) {
+      setSelectedLang(savedLang);
+      return;
+    }
+
+    const match = document.cookie.match(/googtrans=\/en\/([a-z]{2})/);
+
+    if (match?.[1]) {
+      setSelectedLang(match[1]);
     }
   }, []);
 
   const handleLanguageSelect = (lang: string) => {
     setSelectedLang(lang);
+
+    localStorage.setItem("selectedLanguage", lang);
+
     changeLanguage(lang);
   };
 
-  const handleNavigation = (route: any) => {
+  const handleNavigation = (route: string) => {
     setMenuOpen(false);
+    setAboutHovered(false);
     router.push(route);
   };
 
+  const isAboutActive =
+    pathname === "/about" ||
+    pathname.startsWith("/about/");
+
   return (
-    <main className="z-50 min-h-full flex flex-col items-center justify-start bg-zinc-50 font-sans">
-      <div className="flex items-center md:justify-around justify-between w-full min-h-24">
-        <div className="logo ml-8 cursor-pointer">
+    <main className="fixed top-0 left-0 z-50 w-full bg-zinc-50 font-sans">
+      <div className="flex min-h-20 w-full items-center justify-between md:justify-around">
+
+        <Link href="/" className="ml-8 cursor-pointer">
           <Image
             src="/next.svg"
-            alt="Next.js logo"
+            alt="NYA logo"
             width={100}
             height={20}
             priority
           />
-        </div>
+        </Link>
+
         <div
-          className="nav-btn hidden lg:flex  items-center h-auto py-4 mx-8 "
+          className="nav-btn mx-8 hidden h-auto items-center py-4 lg:flex"
           style={{ width: "65%" }}
         >
-          <h1 className="cursor-pointer hover:text-blue-500">
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/" ? "text-orange-500" : ""
+            }`}
+          >
             <Link href="/">Home</Link>
           </h1>
-          <div className="relative group">
-            <h1 className="cursor-pointer hover:text-blue-500">
-              About
+
+          <div
+            className="relative group"
+            onMouseEnter={() => setAboutHovered(true)}
+            onMouseLeave={() => setAboutHovered(false)}
+          >
+            <h1
+              className={`flex cursor-pointer items-center hover:text-orange-500 ${
+                isAboutActive ? "text-orange-500" : ""
+              }`}
+            >
+              <Link href="/about">About Us</Link>
+
+              {aboutHovered ? (
+                <ArrowDropUpIcon />
+              ) : (
+                <ArrowDropDownIcon />
+              )}
             </h1>
 
-            <div className="absolute top-full left-0 pt-2 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md min-w-48 z-50">
+            <div className="absolute left-0 top-full z-50 hidden min-w-48 flex-col rounded-md bg-white pt-2 shadow-lg group-hover:flex">
+
               <Link
-                href="/about"
-                className="px-4 py-2 hover:bg-gray-100"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/about#vision-mission-goals"
-                className="px-4 py-2 hover:bg-gray-100"
+                href="/about/mission"
+                className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                  pathname === "/about/mission"
+                    ? "text-orange-500"
+                    : ""
+                }`}
               >
                 Vision, Mission, Goals
               </Link>
+
               <Link
-                href="/about#board-of-directors"
-                className="px-4 py-2 hover:bg-gray-100"
+                href="/about/team"
+                className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                  pathname === "/about/team"
+                    ? "text-orange-500"
+                    : ""
+                }`}
               >
                 Leadership Team
               </Link>
+
               <Link
                 href="/about/legal-status"
-                className="px-4 py-2 hover:bg-gray-100"
+                className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                  pathname === "/about/legal-status"
+                    ? "text-orange-500"
+                    : ""
+                }`}
               >
                 Legal & Certifications
               </Link>
+
               <Link
                 href="/about/awards"
-                className="px-4 py-2 hover:bg-gray-100"
+                className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                  pathname === "/about/awards"
+                    ? "text-orange-500"
+                    : ""
+                }`}
               >
                 Awards & Recognition
               </Link>
             </div>
           </div>
-          <h1 className="cursor-pointer hover:text-blue-500">
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/what-we-do"
+                ? "text-orange-500"
+                : ""
+            }`}
+          >
             <Link href="/what-we-do">What we do</Link>
           </h1>
-          <h1 className="cursor-pointer hover:text-blue-500">
+
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/projects"
+                ? "text-orange-500"
+                : ""
+            }`}
+          >
             <Link href="/projects">Projects</Link>
           </h1>
-          <h1 className="cursor-pointer hover:text-blue-500">
+
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/gallery"
+                ? "text-orange-500"
+                : ""
+            }`}
+          >
             <Link href="/gallery">Gallery</Link>
           </h1>
-          <h1 className="cursor-pointer hover:text-blue-500">
-            <Link href="/our-partners">Our Partners</Link>
+
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/partners" ||
+              pathname === "/our-partners"
+                ? "text-orange-500"
+                : ""
+            }`}
+          >
+            <Link href="/partners">Our Partners</Link>
           </h1>
-          <h1 className="cursor-pointer hover:text-blue-500">
+
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/contact"
+                ? "text-orange-500"
+                : ""
+            }`}
+          >
             <Link href="/contact">Contact</Link>
           </h1>
-          <h1 className="cursor-pointer hover:text-blue-500">
-            <Link href="/donate">Donate us</Link>
-          </h1>
         </div>
-        <div className="flex h-16 items-center  justify-around lg:mx-8 gap-1">
+
+        <div className="flex h-16 items-center justify-around gap-1 lg:mx-8">
+
           <select
             value={selectedLang}
-            onChange={(e) => handleLanguageSelect(e.target.value)}
-            className="notranslate hidden lg:block h-12 px-3 border rounded-md cursor-pointer outline-none bg-white text-gray-800 text-sm focus:border-[#D95D39]"
+            onChange={(e) =>
+              handleLanguageSelect(e.target.value)
+            }
+            className="notranslate hidden h-11 cursor-pointer rounded-md border bg-white px-3 text-sm text-gray-800 outline-none focus:border-[#D95D39] lg:block"
             translate="no"
           >
-            <option value="en" className="notranslate" translate="no">English</option>
-            <option value="hi" className="notranslate" translate="no">हिंदी</option>
-            <option value="te" className="notranslate" translate="no">తెలుగు</option>
+            <option
+              value="en"
+              className="notranslate"
+              translate="no"
+            >
+              English
+            </option>
+
+            <option
+              value="hi"
+              className="notranslate"
+              translate="no"
+            >
+              हिंदी
+            </option>
+
+            <option
+              value="te"
+              className="notranslate"
+              translate="no"
+            >
+              తెలుగు
+            </option>
           </select>
+
           <button
             className="donate-btn min-w-fit"
             onClick={() => handleNavigation("/donate")}
           >
             Donate now
           </button>
+
           <div
-            className="flex lg:hidden cursor-pointer"
-            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex cursor-pointer lg:hidden"
+            onClick={() => {
+              setMenuOpen((prev) => !prev);
+              setAboutHovered(false);
+            }}
           >
-            {menuOpen ? <CloseIcon className="none" /> : <MenuIcon />}
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </div>
         </div>
       </div>
+
       {menuOpen && (
-        <div className="flex w-full flex-col gap-4 items-start h-auto py-4 px-8">
+        <div className="flex w-full flex-col items-start gap-4 px-8 py-4 backdrop-blur-2xl lg:hidden">
+
           <h1
-            className="cursor-pointer hover:text-blue-500"
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/" ? "text-orange-500" : ""
+            }`}
             onClick={() => handleNavigation("/")}
           >
             Home
           </h1>
+
+          <div className="w-full">
+
+            <div
+              onClick={() =>
+                setAboutHovered((prev) => !prev)
+              }
+              className="flex w-full items-center justify-between"
+            >
+              <h1
+                className={`cursor-pointer hover:text-orange-500 ${
+                  isAboutActive
+                    ? "text-orange-500"
+                    : ""
+                }`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNavigation("/about");
+                }}
+              >
+                About Us
+              </h1>
+
+              {aboutHovered ? (
+                <ArrowDropUpIcon />
+              ) : (
+                <ArrowDropDownIcon />
+              )}
+            </div>
+
+            {aboutHovered && (
+              <div className="mt-4 flex w-full flex-col rounded-md">
+
+                <Link
+                  href="/about/mission"
+                  onClick={() => setMenuOpen(false)}
+                  className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                    pathname === "/about/mission"
+                      ? "text-orange-500"
+                      : ""
+                  }`}
+                >
+                  Vision, Mission, Goals
+                </Link>
+
+                <Link
+                  href="/about/team"
+                  onClick={() => setMenuOpen(false)}
+                  className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                    pathname === "/about/team"
+                      ? "text-orange-500"
+                      : ""
+                  }`}
+                >
+                  Leadership Team
+                </Link>
+
+                <Link
+                  href="/about/legal-status"
+                  onClick={() => setMenuOpen(false)}
+                  className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                    pathname === "/about/legal-status"
+                      ? "text-orange-500"
+                      : ""
+                  }`}
+                >
+                  Legal & Certifications
+                </Link>
+
+                <Link
+                  href="/about/awards"
+                  onClick={() => setMenuOpen(false)}
+                  className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                    pathname === "/about/awards"
+                      ? "text-orange-500"
+                      : ""
+                  }`}
+                >
+                  Awards & Recognition
+                </Link>
+              </div>
+            )}
+          </div>
+
           <h1
-            className="cursor-pointer hover:text-blue-500"
-            onClick={() => handleNavigation("/about")}
-          >
-            About Us
-          </h1>
-          <h1
-            className="cursor-pointer hover:text-blue-500"
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/what-we-do"
+                ? "text-orange-500"
+                : ""
+            }`}
             onClick={() => handleNavigation("/what-we-do")}
           >
             What we do
           </h1>
+
           <h1
-            className="cursor-pointer hover:text-blue-500"
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/projects"
+                ? "text-orange-500"
+                : ""
+            }`}
+            onClick={() => handleNavigation("/projects")}
+          >
+            Projects
+          </h1>
+
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/events"
+                ? "text-orange-500"
+                : ""
+            }`}
             onClick={() => handleNavigation("/events")}
           >
             Events
           </h1>
+
           <h1
-            className="cursor-pointer hover:text-blue-500"
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/gallery"
+                ? "text-orange-500"
+                : ""
+            }`}
             onClick={() => handleNavigation("/gallery")}
           >
             Gallery
           </h1>
+
           <h1
-            className="cursor-pointer hover:text-blue-500"
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/partners" ||
+              pathname === "/our-partners"
+                ? "text-orange-500"
+                : ""
+            }`}
+            onClick={() => handleNavigation("/partners")}
+          >
+            Our Partners
+          </h1>
+
+          <h1
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/contact"
+                ? "text-orange-500"
+                : ""
+            }`}
             onClick={() => handleNavigation("/contact")}
           >
             Contact
           </h1>
+
           <h1
-            className="cursor-pointer hover:text-blue-500"
+            className={`cursor-pointer hover:text-orange-500 ${
+              pathname === "/donate"
+                ? "text-orange-500"
+                : ""
+            }`}
             onClick={() => handleNavigation("/donate")}
           >
             Donate us
           </h1>
 
-          <div className="flex items-center gap-2 mt-2 pt-2 border-t w-full">
-            <span className="text-sm font-medium text-gray-600">Language:</span>
+          <div className="mt-2 flex w-full items-center gap-2 border-t pt-2">
+
+            <span className="text-sm font-medium text-gray-600">
+              Language:
+            </span>
+
             <select
               value={selectedLang}
-              onChange={(e) => handleLanguageSelect(e.target.value)}
-              className="notranslate h-10 px-3 border rounded-md cursor-pointer outline-none bg-white text-gray-800 text-sm focus:border-[#D95D39]"
+              onChange={(e) =>
+                handleLanguageSelect(e.target.value)
+              }
+              className="notranslate h-10 cursor-pointer rounded-md border bg-white px-3 text-sm text-gray-800 outline-none focus:border-[#D95D39]"
               translate="no"
             >
-              <option value="en" className="notranslate" translate="no">English</option>
-              <option value="hi" className="notranslate" translate="no">हिंदी</option>
-              <option value="te" className="notranslate" translate="no">తెలుగు</option>
+              <option
+                value="en"
+                className="notranslate"
+                translate="no"
+              >
+                English
+              </option>
+
+              <option
+                value="hi"
+                className="notranslate"
+                translate="no"
+              >
+                हिंदी
+              </option>
+
+              <option
+                value="te"
+                className="notranslate"
+                translate="no"
+              >
+                తెలుగు
+              </option>
             </select>
           </div>
         </div>
@@ -203,4 +468,3 @@ export default function Header() {
     </main>
   );
 }
-

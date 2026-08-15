@@ -33,7 +33,7 @@ const FAQ_DATA = [
 
 
 const COLORS = {
-  heading: "#1a5c45",     
+  heading: "#C1502E",     
   ctaBg: "#1a3d2e",       
   ctaButton: "#c9e35c",
   border: "#e3e1d8",      
