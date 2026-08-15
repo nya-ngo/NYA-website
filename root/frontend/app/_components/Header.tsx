@@ -73,7 +73,7 @@ export default function Header() {
             <Link href="/gallery">Gallery</Link>
           </h1>
           <h1 className="cursor-pointer hover:text-blue-500">
-            <Link href="/partners">Our Partners</Link>
+            <Link href="/our-partners">Our Partners</Link>
           </h1>
           <h1 className="cursor-pointer hover:text-blue-500">
             <Link href="/contact">Contact</Link>
