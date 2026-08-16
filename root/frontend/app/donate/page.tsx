@@ -323,15 +323,16 @@ export default function DonationPage() {
   return (
     <div className="bg-[#FAF9F4] min-h-screen w-full">
       <main className="w-full min-h-screen flex flex-col">
-        <div className="relative h-96 w-screen overflow-hidden">
+        <div className="relative h-96 w-full overflow-hidden">
           <Image
-            src="/images.jpeg"
-            alt="Donation"
+            src="/donate-hero.jpg"
+            alt="Support Rural Communities"
             loading="eager"
             fill
             className="object-cover"
+            priority
           />
-          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/30" />
 
           <div className="absolute inset-0 flex items-center">
             <div className="ml-[18%] max-w-[650px] text-white">
