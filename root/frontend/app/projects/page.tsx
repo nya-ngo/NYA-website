@@ -2,12 +2,17 @@
 
 import { useMemo, useState } from "react";
 import ProjectCard from "../_components/ProjectCard";
+import ProjectModal, { ProjectData } from "../_components/ProjectModal";
 import projectData from "../data/projects.json";
 
-const { projects, categories } = projectData;
+const { projects, categories } = projectData as {
+  projects: ProjectData[];
+  categories: string[];
+};
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All Projects");
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "All Projects") {
@@ -38,7 +43,7 @@ export default function ProjectsPage() {
             {/* Subtitle */}
             <p className="max-w-2xl text-lg text-gray-600 font-light leading-relaxed">
               From watershed restoration to women’s collectives — every project
-              is rooted in evidence, ownership and long-term impact.
+              is rooted in evidence, ownership and long-term impact. Click on any project to explore its full objectives, outcomes, and community impact.
             </p>
           </div>
         </div>
@@ -71,7 +76,11 @@ export default function ProjectsPage() {
         <div className="grid gap-10 lg:grid-cols-2">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
+              <ProjectCard
+                key={project.title}
+                {...project}
+                onClick={() => setSelectedProject(project)}
+              />
             ))
           ) : (
             <div className="col-span-full rounded-2xl border border-gray-200 bg-white p-12 text-center text-gray-500 shadow-sm font-light">
@@ -80,6 +89,13 @@ export default function ProjectsPage() {
           )}
         </div>
       </section>
+
+      {/* Project Details Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </main>
   );
 }
+

@@ -1,52 +1,137 @@
 {
   "projects": [
     {
+      "id": "watershed-development",
       "title": "Integrated Watershed Development Programme",
       "category": "Watershed",
       "period": "2019–2024",
       "location": "Kurnool, Andhra Pradesh",
       "funder": "NABARD",
+      "status": "Completed (Handed to Community)",
       "description": "Construction of 142 check dams, 87 farm ponds, and 23 rock-fill dams across 12 villages — recharging groundwater for over 4,500 farming households.",
+      "longDescription": "The Integrated Watershed Development Programme was executed across 12 water-stressed villages in the semi-arid Rayalaseema belt. Through hydrological topography mapping, continuous soil conservation, and participatory ridge-to-valley interventions, this initiative restored ecological equilibrium, elevated groundwater levels, and secured year-round agricultural water supply for drought-prone farming communities.",
+      "beneficiaries": "4,500+ small & marginal farming households across 12 village panchayats",
+      "approach": "Ridge-to-valley hydrological planning combined with community-led construction and social audits.",
+      "objectives": [
+        "Harvest runoff rainwater and recharge deep aquifers through decentralized civil structures",
+        "Prevent severe topsoil erosion on over 22,000 acres of agricultural and community wasteland",
+        "Increase double-cropping area and drought resilience among smallholder farmers",
+        "Empower local Watershed User Associations for enduring community governance"
+      ],
+      "highlights": [
+        "142 check dams and 87 farm ponds constructed",
+        "23 rock-fill dams and 310 percolation trenches installed",
+        "Groundwater table rose by an average of 4.2 meters across project clusters",
+        "Crop productivity increased by 38% for groundnut, pulses, and millets"
+      ],
       "imageSrc": "https://picsum.photos/id/1056/1200/800",
       "imageAlt": "Watershed landscape with community water project"
     },
     {
+      "id": "fpo-promotion",
       "title": "Farmer Producer Organization (FPO) Promotion",
       "category": "Agriculture",
       "period": "2020–Present",
-      "location": "Anantapur & Kurnool",
+      "location": "Anantapur & Kurnool Districts",
       "funder": "NABARD / SFAC",
+      "status": "Active & Expanding",
       "description": "Mobilized 3,200 smallholder farmers into 4 FPOs, providing market linkages, post-harvest infrastructure and access to institutional credit.",
+      "longDescription": "Small and marginal farmers often face severe exploitation in commodity markets due to fragmented yields and middleman monopolies. Our FPO promotion project organizes farming communities into registered, professionally governed collective enterprises, equipping them with bulk input purchasing power, organic certifications, processing hubs, and direct institutional buyer networks.",
+      "beneficiaries": "3,200+ smallholder & tribal farmers across dryland districts",
+      "approach": "Village-level mobilization, democratic cooperative governance, value-chain infrastructure, and buyer tie-ups.",
+      "objectives": [
+        "Aggregate farm produce to negotiate premium market prices and eliminate exploitative intermediaries",
+        "Establish decentralized cleaning, grading, packing, and solar-drying facilities",
+        "Transition 1,200+ acres to climate-resilient natural farming and indigenous millets",
+        "Facilitate institutional working capital and low-interest crop credit linkages"
+      ],
+      "highlights": [
+        "4 registered, self-sustaining FPOs operating with professional management",
+        "₹4.8 Crore cumulative turnover achieved across pulses, millets, and groundnuts",
+        "Direct farm-gate price realization improved by 22-30% for member farmers",
+        "Established 2 modern primary processing and value-addition centers"
+      ],
       "imageSrc": "https://picsum.photos/id/1018/1200/800",
       "imageAlt": "Farmers working together in a field"
     },
     {
+      "id": "nutrition-gardens",
       "title": "Women-led Nutrition Gardens",
       "category": "Women",
       "period": "2022–Present",
       "location": "Rural Andhra Pradesh",
-      "funder": "Local Trusts",
+      "funder": "Local Philanthropic Trusts",
+      "status": "Active",
       "description": "Supported women’s collectives to build kitchen gardens, improve family nutrition and increase income through vegetable sales.",
+      "longDescription": "Combating chronic micronutrient deficiencies and seasonal food insecurity, this initiative equips rural women with heirloom non-GMO seeds, bio-manure techniques, and micro-drip irrigation setups to transform backyard spaces into productive organic kitchen gardens, improving health indicators and family self-reliance.",
+      "beneficiaries": "1,850+ rural women and their families",
+      "approach": "Self-Help Group (SHG) aggregation, bio-intensive permaculture training, and seed bank creation.",
+      "objectives": [
+        "Ensure dietary diversity and year-round access to fresh, pesticide-free greens and vegetables",
+        "Reduce out-of-pocket household expenditures on essential groceries",
+        "Generate supplemental household income through local weekly market sales of surplus produce",
+        "Foster women's financial autonomy and leadership within village Gram Sabhas"
+      ],
+      "highlights": [
+        "1,850+ individual and 45 community nutrition gardens established",
+        "Over 65% reduction in child anaemia rates recorded across target project hamlets",
+        "Participating women generated an additional ₹3,000–₹5,000 monthly from surplus sales",
+        "Trained 120 women as certified community organic farming trainers (Krishi Sakhis)"
+      ],
       "imageSrc": "https://picsum.photos/id/1040/1200/800",
       "imageAlt": "Women tending a small vegetable garden"
     },
     {
+      "id": "child-rights",
       "title": "Child Rights Learning Circles",
       "category": "Child Rights",
       "period": "2021–Present",
       "location": "Kurnool District",
-      "funder": "Community Partners",
+      "funder": "Community Partners & Donors",
+      "status": "Active",
       "description": "Established child-friendly learning circles to promote rights awareness, school retention and safe spaces for marginalized children.",
+      "longDescription": "Targeting high-dropout rural corridors, Child Rights Learning Circles provide safe, creative after-school learning environments. Through remedial education, life-skills sessions, child protection committees, and anti-child marriage advocacy, we ensure that every child's right to education, protection, and childhood is vigilantly defended.",
+      "beneficiaries": "3,800+ vulnerable children across 32 rural habitations",
+      "approach": "Community-based learning centers, peer mentors, parent counseling, and police/panchayat convergence.",
+      "objectives": [
+        "Prevent school dropouts, child labour, and child marriage in vulnerable habitations",
+        "Provide foundational literacy, numeracy, and STEM-based interactive learning",
+        "Establish Village Child Protection Committees (VCPCs) in collaboration with local schools",
+        "Provide psychosocial counseling and scholarship support for higher education"
+      ],
+      "highlights": [
+        "32 active Learning Circles operating 6 days a week",
+        "Zero child marriages recorded in adopted intervention hamlets over the past 3 years",
+        "94% primary-to-secondary school retention rate achieved",
+        "140+ dropouts successfully mainstreamed back into formal government schools"
+      ],
       "imageSrc": "https://picsum.photos/id/1025/1200/800",
       "imageAlt": "Children learning together outside"
     },
     {
+      "id": "community-health",
       "title": "Community Health and Nutrition Outreach",
       "category": "Health",
       "period": "2023–Present",
-      "location": "Panchayat Clusters",
-      "funder": "Health Trust",
+      "location": "Panchayat Clusters, Rayalaseema",
+      "funder": "Health Trust & CSR Partners",
+      "status": "Active",
       "description": "Delivered village health camps, nutrition counselling, and maternal care guidance to strengthen wellbeing across remote communities.",
+      "longDescription": "Bridging the critical last-mile healthcare gap in remote villages with limited primary healthcare access, this programme deploys mobile healthcare teams, preventative health screenings, telemedicine linkages, and intensive maternal and newborn care monitoring.",
+      "beneficiaries": "8,200+ rural residents, with special focus on expectant mothers and seniors",
+      "approach": "Door-to-door health surveillance, mobile diagnostic camps, and collaboration with ASHA/Anganwadi workers.",
+      "objectives": [
+        "Deliver comprehensive primary diagnostics, essential medicines, and specialist doctor consultations",
+        "Screen for non-communicable diseases (hypertension, diabetes) and early maternal risks",
+        "Distribute nutritional supplements and conduct balanced diet cooking demonstrations",
+        "Enable seamless referral linkages with district and tertiary government hospitals"
+      ],
+      "highlights": [
+        "48 multi-specialty mobile health camps conducted reaching 8,200+ patients",
+        "1,200+ pregnant and lactating mothers supported through regular nutritional monitoring",
+        "100% institutional deliveries achieved among registered expectant mothers",
+        "Distributed 5,000+ preventative health and hygiene kits"
+      ],
       "imageSrc": "https://picsum.photos/id/1051/1200/800",
       "imageAlt": "Health outreach in rural community"
     }
