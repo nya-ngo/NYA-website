@@ -9,7 +9,7 @@ import {
   getRecentDonations as getRecentDonationsService,
   getTopDonations as getTopDonationsService,
 } from "../services/donationService.js";
-
+import { sendPaymentSuccessEmail } from "../utils/emailSender.js";
 function formatRelativeDate(date) {
   if (!date) return null;
   const ms = Date.now() - new Date(date).getTime();
@@ -69,6 +69,9 @@ export async function createDonation(req, res, next) {
       paymentStatus:payment_status,
       message,
     });
+    console.log("Donation created:", donation);
+        const result=await sendPaymentSuccessEmail({ to: email, name, amount, orderId: order_id, paymentId: payment_id,pancard });
+        console.log("Email send result:", result);
 
     return res.status(201).json(donation);
   } catch (error) {
@@ -115,7 +118,6 @@ export async function createOrder(req, res, next) {
       pancard,
       amount,
     });
-
     return res.status(201).json({
       order_id: order.orderId,
       message: "Stored in db successfully",
@@ -143,6 +145,7 @@ export async function verifyPayment(req, res, next) {
 
     if (!order_id || !payment_id || !payment_status) {
       return res.status(400).json({
+        
         message: "order_id, payment_id, and payment_status are required",
       });
     }
