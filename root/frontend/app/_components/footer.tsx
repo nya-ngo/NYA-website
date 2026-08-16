@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   const navLinks = [
@@ -9,7 +10,7 @@ export default function Footer() {
     { label: "Projects", href: "/projects" },
     { label: "Gallery", href: "/gallery" },
     { label: "Supporters", href: "/our-partners" },
-    { label: "Legal Status", href: "/legal-status" },
+    { label: "Legal Status", href: "/about/legal-status" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -85,8 +86,14 @@ export default function Footer() {
         <div className="flex flex-col max-w-xs shrink-0">
           {/* Logo circle + name */}
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-              <span className="text-white font-bold text-sm">NYA</span>
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden p-0.5">
+              <Image
+                src="/nya-logo.png"
+                alt="Nava Youth Association Logo"
+                width={48}
+                height={48}
+                className="w-full h-full object-contain rounded-full"
+              />
             </div>
             <div>
               <p className="text-white font-semibold text-base leading-tight">

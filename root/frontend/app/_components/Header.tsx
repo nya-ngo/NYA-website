@@ -14,6 +14,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutHovered, setAboutHovered] = useState(false);
   const [selectedLang, setSelectedLang] = useState("en");
+  const [currentHash, setCurrentHash] = useState("");
 
   const router = useRouter();
   const pathname = usePathname();
@@ -35,6 +36,24 @@ export default function Header() {
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const updateHash = () => {
+      setCurrentHash(window.location.hash);
+    };
+
+    updateHash();
+
+    window.addEventListener("hashchange", updateHash);
+    window.addEventListener("popstate", updateHash);
+
+    return () => {
+      window.removeEventListener("hashchange", updateHash);
+      window.removeEventListener("popstate", updateHash);
+    };
+  }, [pathname]);
+
   const handleLanguageSelect = (lang: string) => {
     setSelectedLang(lang);
 
@@ -46,6 +65,7 @@ export default function Header() {
   const handleNavigation = (route: string) => {
     setMenuOpen(false);
     setAboutHovered(false);
+    setCurrentHash("");
     router.push(route);
   };
 
@@ -54,23 +74,29 @@ export default function Header() {
     pathname.startsWith("/about/");
 
   return (
-    <main className="fixed top-0 left-0 z-50 w-full bg-zinc-50 font-sans">
-      <div className="flex min-h-20 w-full items-center justify-between md:justify-around">
+    <main className="fixed top-0 left-0 z-50 w-full bg-zinc-50 font-sans border-b border-gray-100 shadow-xs">
+      <div className="flex min-h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-10">
 
-        <Link href="/" className="ml-8 cursor-pointer">
+        <Link href="/" className="cursor-pointer flex items-center gap-2.5 sm:gap-3 shrink-0">
           <Image
-            src="/next.svg"
-            alt="NYA logo"
-            width={100}
-            height={20}
+            src="/nya-logo.png"
+            alt="Nava Youth Association Logo"
+            width={48}
+            height={48}
+            className="h-11 w-11 sm:h-12 sm:w-12 object-contain rounded-full"
             priority
           />
+          <div className="hidden xl:flex flex-col">
+            <span className="font-bold text-base tracking-tight text-[#1C3F36] leading-tight">
+              Nava Youth Association
+            </span>
+            <span className="text-[10px] font-semibold tracking-wider text-[#D95D39] uppercase">
+              SINCE 1991 . KURNOOL, AP
+            </span>
+          </div>
         </Link>
 
-        <div
-          className="nav-btn mx-8 hidden h-auto items-center py-4 lg:flex"
-          style={{ width: "65%" }}
-        >
+        <div className="nav-btn hidden h-auto items-center py-4 lg:flex flex-1 justify-center px-4">
           <h1
             className={`cursor-pointer hover:text-orange-500 ${
               pathname === "/" ? "text-orange-500" : ""
@@ -89,7 +115,9 @@ export default function Header() {
                 isAboutActive ? "text-orange-500" : ""
               }`}
             >
-              <Link href="/about">About</Link>
+              <Link href="/about" onClick={() => setCurrentHash("")}>
+                About
+              </Link>
 
               {aboutHovered ? (
                 <ArrowDropUpIcon />
@@ -101,8 +129,11 @@ export default function Header() {
             <div className="absolute left-0 top-full z-50 hidden min-w-48 flex-col rounded-md bg-white pt-2 shadow-lg group-hover:flex">
               <Link
                 href="/about"
+                onClick={() => setCurrentHash("")}
                 className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
-                  pathname === "/about" ? "text-orange-500" : ""
+                  pathname === "/about" && (!currentHash || currentHash === "#")
+                    ? "text-orange-500 font-medium"
+                    : ""
                 }`}
               >
                 About Us
@@ -110,9 +141,10 @@ export default function Header() {
 
               <Link
                 href="/about#vision-mission-goals"
+                onClick={() => setCurrentHash("#vision-mission-goals")}
                 className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
-                  pathname === "/about/mission"
-                    ? "text-orange-500"
+                  pathname === "/about" && currentHash === "#vision-mission-goals"
+                    ? "text-orange-500 font-medium"
                     : ""
                 }`}
               >
@@ -121,9 +153,10 @@ export default function Header() {
 
               <Link
                 href="/about#board-of-directors"
+                onClick={() => setCurrentHash("#board-of-directors")}
                 className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
-                  pathname === "/about/team"
-                    ? "text-orange-500"
+                  pathname === "/about" && currentHash === "#board-of-directors"
+                    ? "text-orange-500 font-medium"
                     : ""
                 }`}
               >
@@ -132,9 +165,10 @@ export default function Header() {
 
               <Link
                 href="/about/legal-status"
+                onClick={() => setCurrentHash("")}
                 className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
                   pathname === "/about/legal-status"
-                    ? "text-orange-500"
+                    ? "text-orange-500 font-medium"
                     : ""
                 }`}
               >
@@ -143,9 +177,10 @@ export default function Header() {
 
               <Link
                 href="/about/awards"
+                onClick={() => setCurrentHash("")}
                 className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
                   pathname === "/about/awards"
-                    ? "text-orange-500"
+                    ? "text-orange-500 font-medium"
                     : ""
                 }`}
               >
@@ -202,14 +237,14 @@ export default function Header() {
           </h1>
         </div>
 
-        <div className="flex h-16 items-center justify-around gap-1 lg:mx-8">
+        <div className="flex h-16 items-center gap-3 lg:gap-3.5 shrink-0">
 
           <select
             value={selectedLang}
             onChange={(e) =>
               handleLanguageSelect(e.target.value)
             }
-            className="notranslate hidden h-11 cursor-pointer rounded-md border bg-white px-3 text-sm text-gray-800 outline-none focus:border-[#D95D39] lg:block"
+            className="notranslate hidden h-11 cursor-pointer rounded-md border bg-white px-3 text-sm text-gray-800 outline-none focus:border-[#D95D39] lg:block shrink-0"
             translate="no"
           >
             <option
@@ -241,14 +276,14 @@ export default function Header() {
           <Link
             href="/donate"
             style={{ backgroundColor: "#D95D39" }}
-            className="inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-3 rounded-full transition-opacity hover:opacity-90 self-start"
+            className="inline-flex items-center gap-2 whitespace-nowrap shrink-0 text-white text-sm font-semibold px-5 py-3 rounded-full transition-opacity hover:opacity-90"
           >
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="w-4 h-4"
+              className="w-4 h-4 shrink-0"
             >
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
@@ -312,11 +347,29 @@ export default function Header() {
               <div className="mt-4 flex w-full flex-col rounded-md">
 
                 <Link
-                  href="/about/mission"
-                  onClick={() => setMenuOpen(false)}
+                  href="/about"
+                  onClick={() => {
+                    setCurrentHash("");
+                    setMenuOpen(false);
+                  }}
                   className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
-                    pathname === "/about/mission"
-                      ? "text-orange-500"
+                    pathname === "/about" && (!currentHash || currentHash === "#")
+                      ? "text-orange-500 font-medium"
+                      : ""
+                  }`}
+                >
+                  About Us
+                </Link>
+
+                <Link
+                  href="/about#vision-mission-goals"
+                  onClick={() => {
+                    setCurrentHash("#vision-mission-goals");
+                    setMenuOpen(false);
+                  }}
+                  className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                    pathname === "/about" && currentHash === "#vision-mission-goals"
+                      ? "text-orange-500 font-medium"
                       : ""
                   }`}
                 >
@@ -324,11 +377,14 @@ export default function Header() {
                 </Link>
 
                 <Link
-                  href="/about/team"
-                  onClick={() => setMenuOpen(false)}
+                  href="/about#board-of-directors"
+                  onClick={() => {
+                    setCurrentHash("#board-of-directors");
+                    setMenuOpen(false);
+                  }}
                   className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
-                    pathname === "/about/team"
-                      ? "text-orange-500"
+                    pathname === "/about" && currentHash === "#board-of-directors"
+                      ? "text-orange-500 font-medium"
                       : ""
                   }`}
                 >
@@ -337,10 +393,13 @@ export default function Header() {
 
                 <Link
                   href="/about/legal-status"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    setCurrentHash("");
+                    setMenuOpen(false);
+                  }}
                   className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
                     pathname === "/about/legal-status"
-                      ? "text-orange-500"
+                      ? "text-orange-500 font-medium"
                       : ""
                   }`}
                 >
@@ -349,10 +408,13 @@ export default function Header() {
 
                 <Link
                   href="/about/awards"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    setCurrentHash("");
+                    setMenuOpen(false);
+                  }}
                   className={`pl-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
                     pathname === "/about/awards"
-                      ? "text-orange-500"
+                      ? "text-orange-500 font-medium"
                       : ""
                   }`}
                 >

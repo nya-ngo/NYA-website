@@ -44,7 +44,7 @@ body {
   border-radius: 4px;
 }
 .nav-btn {
-  gap: clamp(1rem, 5vw, 2rem);
+  gap: clamp(0.75rem, 1.5vw, 1.75rem);
   justify-content: center;  
 }
 .nav-btn h1{
@@ -76,23 +76,6 @@ body {
   font-weight: 600;
 
   opacity: 0.7;
-}
-/* 
-.nav-btn h1:hover::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  background-color: #C1502E;
-  */
-/* } */
-
-@media (width >= 90rem /* 1024px */) {
-  .nav-btn {
-    padding-inline: calc(var(--spacing) * 40) /* 10rem = 160px */;
-  }
 }
 
 /* ── GOOGLE TRANSLATE UI CLEANUP ── */
