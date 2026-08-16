@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import PDFDocument from "pdfkit";
 
 const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, EMAIL_FROM } = process.env;
 
@@ -12,18 +13,111 @@ function createTransporter() {
 
   if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !EMAIL_FROM) {
     throw new Error(
-      "SMTP_HOST, SMTP_USER, SMTP_PASS, and EMAIL_FROM must be set to send emails",
+      "SMTP_HOST, SMTP_USER, SMTP_PASS, and EMAIL_FROM must be set to send emails"
     );
   }
 
   return nodemailer.createTransport({
     host: SMTP_HOST,
-    port: Number(SMTP_PORT) || 587,
+    port: Number(SMTP_PORT),
     secure: SMTP_PORT === "465",
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
+  });
+}
+function createCertificatePdf({
+  recipient = "[Recipient's Full Name]",
+  date = "",
+  amountText = "",
+} = {}) {
+  return new Promise((resolve, reject) => {
+    try {
+      const doc = new PDFDocument({ size: "A4", margin: 50 });
+      const buffers = [];
+
+      doc.on("data", (chunk) => buffers.push(chunk));
+      doc.on("end", () => resolve(Buffer.concat(buffers)));
+      doc.on("error", (err) => reject(err));
+
+      // Outer border
+      doc.rect(20, 20, doc.page.width - 40, doc.page.height - 40).stroke();
+
+      // Title
+      doc
+        .fontSize(28)
+        .fillColor("#8B0000")
+        .font("Times-Bold")
+        .text("CERTIFICATE OF APPRECIATION", {
+          align: "center",
+        });
+
+      doc.moveDown(1);
+      doc
+        .fontSize(12)
+        .fillColor("#333333")
+        .font("Times-Roman")
+        .text("This certificate is proudly presented to", {
+          align: "center",
+        });
+
+      doc.moveDown(0.5);
+      doc.fontSize(22).font("Times-Bold").text(recipient, { align: "center" });
+
+      doc.moveDown(1);
+      // Certification sentence including amount and date
+      const certSentence = `This is to certify that ${recipient} has contributed ${amountText}${
+        date ? " on " + date : ""
+      }.`;
+      doc
+        .fontSize(14)
+        .fillColor("#333333")
+        .font("Times-Roman")
+        .text(certSentence, {
+          align: "center",
+          width: 480,
+        });
+
+      doc.moveDown(0.8);
+      const body =
+        "With immense gratitude and appreciation, Nava Youth Association recognizes your generous contribution and unwavering support to our community welfare and development initiatives in Pathikonda.";
+      doc.fontSize(12).font("Times-Roman").text(body, {
+        align: "center",
+        width: 420,
+      });
+
+      // Date
+      if (date) {
+        doc.moveDown(2);
+        doc.fontSize(10).text(date, { align: "left" });
+      }
+
+      // Signature lines
+      const sigY = doc.page.height - 140;
+      // Left signature
+      doc.moveTo(100, sigY).lineTo(250, sigY).stroke();
+      doc.fontSize(12).text("Prasanna Lakshmi", 100, sigY + 6);
+      doc
+        .fontSize(10)
+        .fillColor("#555555")
+        .text("Secretary", 100, sigY + 22);
+
+      // Right signature
+      doc.moveTo(350, sigY).lineTo(500, sigY).stroke();
+      doc
+        .fontSize(12)
+        .fillColor("#000000")
+        .text("Venu Gopal Reddy", 350, sigY + 6);
+      doc
+        .fontSize(10)
+        .fillColor("#555555")
+        .text("President", 350, sigY + 22);
+
+      doc.end();
+    } catch (err) {
+      reject(err);
+    }
   });
 }
 
@@ -32,16 +126,16 @@ export async function sendPaymentSuccessEmail({
   name,
   orderId,
   paymentId,
-  receipt,
+  pancard,
   amount,
   currency = "INR",
 }) {
   try {
     console.log(`📧 Sending SUCCESS email to: ${to}`);
-    const transporter = createTransporter();
-
+    const transporter = await createTransporter();
+    console.log("🔧 Email transporter created successfully.");
     const amountText = amount
-      ? `₹${(amount / 100).toFixed(2)} ${currency}`
+      ? `₹${(amount).toFixed(2)} ${currency}`
       : `Amount not provided`;
 
     const dateText = new Date().toLocaleDateString("en-IN", {
@@ -61,7 +155,7 @@ export async function sendPaymentSuccessEmail({
           <h2 style="color: #1a5d2f; margin-bottom: 8px;">Donation Details</h2>
           <div style="background-color: #f0f8f0; padding: 18px; border-radius: 10px; margin-bottom: 20px;">
             <p style="margin: 0 0 8px;"><strong>Donation ID:</strong> ${orderId}</p>
-            <p style="margin: 0 0 8px;"><strong>Receipt ID:</strong> ${receipt || "N/A"}</p>
+            <p style="margin: 0 0 8px;"><strong>Pancard Number:</strong> ${pancard || "N/A"}</p>
             <p style="margin: 0 0 8px;"><strong>Amount:</strong> ${amountText}</p>
             <p style="margin: 0 0 8px;"><strong>Date:</strong> ${dateText}</p>
             <p style="margin: 0;"><strong>Transaction ID:</strong> ${paymentId}</p>
@@ -78,15 +172,59 @@ export async function sendPaymentSuccessEmail({
         </div>
       </div>
     `;
+    // generate certificate PDF and attach (best-effort)
+    let attachments = [];
 
+try {
+  // console.log("🔵 Starting PDF generation");
+
+  const recipientName = name || "Supporter";
+
+  // console.log("🔵 Creating PDF for:", recipientName);
+
+  const pdfBuffer = await createCertificatePdf({
+    recipient: recipientName,
+    date: dateText,
+    amountText: amountText,
+  });
+
+  // console.log("🟢 PDF generated:", pdfBuffer.length, "bytes");
+
+  const safeName = recipientName.replace(/[^a-z0-9\-_.]/gi, "_");
+
+  attachments.push({
+    filename: `certificate-${safeName}.pdf`,
+    content: pdfBuffer,
+  });
+
+  // console.log("🟢 PDF attachment created");
+
+} catch (err) {
+  console.error(
+    "🔴 Failed to generate certificate PDF:",
+    err
+  );
+} 
+// console.log("🔧 Preparing to send email with attachments:", attachments);
+console.log("🔧 Preparing to send email with attachments")
     const mailOptions = {
       from: EMAIL_FROM,
       to,
       subject: "✅ Payment Successful - Thank You!",
       html,
+      attachments,
     };
-
+    console.log("🔧 Sending email with options:", mailOptions);
     const result = await transporter.sendMail(mailOptions);
+
+console.log("✅ SUCCESS email sent:", {
+  messageId: result.messageId,
+  accepted: result.accepted,
+  rejected: result.rejected,
+  response: result.response,
+});
+
+return result;
     console.log(`✅ SUCCESS email sent to ${to}:`, result.messageId);
     return result;
   } catch (error) {
@@ -103,14 +241,14 @@ export async function sendPaymentFailureEmail({
   name,
   orderId,
   paymentId,
-  receipt,
+  pancard,
   amount,
   currency = "INR",
   donationLink = "https://razorpay.me/@navayouthassociation",
 }) {
   try {
     console.log(`📧 Sending FAILURE email to: ${to}`);
-    const transporter = createTransporter();
+    const transporter = await createTransporter();
 
     const amountText = amount
       ? `₹${(amount / 100).toFixed(2)} ${currency}`
@@ -133,7 +271,7 @@ export async function sendPaymentFailureEmail({
           <h2 style="color: #b71c1c; margin-bottom: 8px;">Transaction Details</h2>
           <div style="background-color: #ffebee; padding: 18px; border-radius: 10px; margin-bottom: 20px;">
             <p style="margin: 0 0 8px;"><strong>Attempted Amount:</strong> ${amountText}</p>
-            <p style="margin: 0 0 8px;"><strong>Receipt ID:</strong> ${receipt || "N/A"}</p>
+            <p style="margin: 0 0 8px;"><strong>Pancard Number:</strong> ${pancard || "N/A"}</p>
             <p style="margin: 0 0 8px;"><strong>Date:</strong> ${dateText}</p>
             <p style="margin: 0;"><strong>Reference ID:</strong> ${paymentId}</p>
           </div>
@@ -158,8 +296,16 @@ export async function sendPaymentFailureEmail({
       subject: "❌ Payment Verification Failed - Please Retry",
       html,
     };
+const result = await transporter.sendMail(mailOptions);
 
-    const result = await transporter.sendMail(mailOptions);
+console.log("✅ SUCCESS email sent:", {
+  messageId: result.messageId,
+  accepted: result.accepted,
+  rejected: result.rejected,
+  response: result.response,
+});
+
+return result;
     console.log(`✅ FAILURE email sent to ${to}:`, result.messageId);
     return result;
   } catch (error) {
