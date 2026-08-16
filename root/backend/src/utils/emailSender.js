@@ -31,6 +31,7 @@ function createTransporter() {
 function createCertificatePdf({
   recipient = "[Recipient's Full Name]",
   date = "",
+  amountText = "",
 } = {}) {
   return new Promise((resolve, reject) => {
     try {
@@ -66,6 +67,20 @@ function createCertificatePdf({
       doc.fontSize(22).font("Times-Bold").text(recipient, { align: "center" });
 
       doc.moveDown(1);
+      // Certification sentence including amount and date
+      const certSentence = `This is to certify that ${recipient} has contributed ${amountText}${
+        date ? " on " + date : ""
+      }.`;
+      doc
+        .fontSize(14)
+        .fillColor("#333333")
+        .font("Times-Roman")
+        .text(certSentence, {
+          align: "center",
+          width: 480,
+        });
+
+      doc.moveDown(0.8);
       const body =
         "With immense gratitude and appreciation, Nava Youth Association recognizes your generous contribution and unwavering support to our community welfare and development initiatives in Pathikonda.";
       doc.fontSize(12).font("Times-Roman").text(body, {
@@ -165,6 +180,7 @@ export async function sendPaymentSuccessEmail({
       const pdfBuffer = await createCertificatePdf({
         recipient: recipientName,
         date: dateText,
+        amountText: amountText,
       });
       const safeName = recipientName.replace(/[^a-z0-9\-_.]/gi, "_");
       attachments.push({
