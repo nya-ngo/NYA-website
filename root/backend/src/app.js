@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import donationRoutes from "./routes/donationRoutes.js";
@@ -8,6 +9,12 @@ import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  }),
+);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

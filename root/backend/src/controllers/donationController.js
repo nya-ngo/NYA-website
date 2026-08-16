@@ -136,8 +136,13 @@ export async function verifyPayment(req, res, next) {
       payment_status,
     } = req.body;
 
-    if (!order_id || !payment_id || !payment_status) {
-      return res.status(400).json({
+      if (!order_id || !payment_id || !payment_status) {
+        console.log("Missing required fields:", {
+          order_id,
+          payment_id,
+          payment_status,
+        });
+        return res.status(400).json({
         message: "order_id, payment_id, and payment_status are required",
       });
     }

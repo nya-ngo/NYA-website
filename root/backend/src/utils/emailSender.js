@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import PDFDocument from "pdfkit";
 
 const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, EMAIL_FROM } = process.env;
 
@@ -24,6 +25,85 @@ function createTransporter() {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
+  });
+}
+
+function createCertificatePdf({
+  recipient = "[Recipient's Full Name]",
+  date = "",
+} = {}) {
+  return new Promise((resolve, reject) => {
+    try {
+      const doc = new PDFDocument({ size: "A4", margin: 50 });
+      const buffers = [];
+
+      doc.on("data", (chunk) => buffers.push(chunk));
+      doc.on("end", () => resolve(Buffer.concat(buffers)));
+      doc.on("error", (err) => reject(err));
+
+      // Outer border
+      doc.rect(20, 20, doc.page.width - 40, doc.page.height - 40).stroke();
+
+      // Title
+      doc
+        .fontSize(28)
+        .fillColor("#8B0000")
+        .font("Times-Bold")
+        .text("CERTIFICATE OF APPRECIATION", {
+          align: "center",
+        });
+
+      doc.moveDown(1);
+      doc
+        .fontSize(12)
+        .fillColor("#333333")
+        .font("Times-Roman")
+        .text("This certificate is proudly presented to", {
+          align: "center",
+        });
+
+      doc.moveDown(0.5);
+      doc.fontSize(22).font("Times-Bold").text(recipient, { align: "center" });
+
+      doc.moveDown(1);
+      const body =
+        "With immense gratitude and appreciation, Nava Youth Association recognizes your generous contribution and unwavering support to our community welfare and development initiatives in Pathikonda.";
+      doc.fontSize(12).font("Times-Roman").text(body, {
+        align: "center",
+        width: 420,
+      });
+
+      // Date
+      if (date) {
+        doc.moveDown(2);
+        doc.fontSize(10).text(date, { align: "left" });
+      }
+
+      // Signature lines
+      const sigY = doc.page.height - 140;
+      // Left signature
+      doc.moveTo(100, sigY).lineTo(250, sigY).stroke();
+      doc.fontSize(12).text("Prasanna Lakshmi", 100, sigY + 6);
+      doc
+        .fontSize(10)
+        .fillColor("#555555")
+        .text("Secretary", 100, sigY + 22);
+
+      // Right signature
+      doc.moveTo(350, sigY).lineTo(500, sigY).stroke();
+      doc
+        .fontSize(12)
+        .fillColor("#000000")
+        .text("Venu Gopal Reddy", 350, sigY + 6);
+      doc
+        .fontSize(10)
+        .fillColor("#555555")
+        .text("President", 350, sigY + 22);
+
+      doc.end();
+    } catch (err) {
+      reject(err);
+    }
   });
 }
 
@@ -78,12 +158,32 @@ export async function sendPaymentSuccessEmail({
         </div>
       </div>
     `;
+    // generate certificate PDF and attach (best-effort)
+    let attachments = [];
+    try {
+      const recipientName = name || "Supporter";
+      const pdfBuffer = await createCertificatePdf({
+        recipient: recipientName,
+        date: dateText,
+      });
+      const safeName = recipientName.replace(/[^a-z0-9\-_.]/gi, "_");
+      attachments.push({
+        filename: `certificate-${safeName}.pdf`,
+        content: pdfBuffer,
+      });
+    } catch (err) {
+      console.error(
+        "⚠️ Failed to generate certificate PDF:",
+        err.message || err,
+      );
+    }
 
     const mailOptions = {
       from: EMAIL_FROM,
       to,
       subject: "✅ Payment Successful - Thank You!",
       html,
+      attachments,
     };
 
     const result = await transporter.sendMail(mailOptions);
