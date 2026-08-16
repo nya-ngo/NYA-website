@@ -60,14 +60,14 @@ export default function HomePage() {
       `}</style>
 
       {/* 1. HERO SECTION */}
-      <section className="relative w-full h-screen min-h-[600px] flex flex-col justify-center bg-zinc-900">
+      <section className="relative w-full h-screen min-h-[600px] flex flex-col md:justify-center bg-zinc-900">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/hero-bg.png')" }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30"></div>
         </div>
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-20">
+        <div className="relative  w-full max-w-7xl mx-auto px-6 lg:px-8 pt-20">
           <div className="flex items-center gap-4 mb-6">
             <div className="h-[1px] w-8 bg-[#D95D39]"></div>
             <span className="text-[#D95D39] text-xs font-bold tracking-[0.2em] uppercase">
