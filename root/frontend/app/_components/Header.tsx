@@ -89,7 +89,7 @@ export default function Header() {
                 isAboutActive ? "text-orange-500" : ""
               }`}
             >
-              <Link href="/about">About Us</Link>
+              <Link href="/about">About</Link>
 
               {aboutHovered ? (
                 <ArrowDropUpIcon />
@@ -99,9 +99,17 @@ export default function Header() {
             </h1>
 
             <div className="absolute left-0 top-full z-50 hidden min-w-48 flex-col rounded-md bg-white pt-2 shadow-lg group-hover:flex">
+              <Link
+                href="/about"
+                className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
+                  pathname === "/about" ? "text-orange-500" : ""
+                }`}
+              >
+                About Us
+              </Link>
 
               <Link
-                href="/about/mission"
+                href="/about#vision-mission-goals"
                 className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
                   pathname === "/about/mission"
                     ? "text-orange-500"
@@ -112,7 +120,7 @@ export default function Header() {
               </Link>
 
               <Link
-                href="/about/team"
+                href="/about#board-of-directors"
                 className={`px-4 py-2 hover:bg-gray-100 hover:text-orange-500 ${
                   pathname === "/about/team"
                     ? "text-orange-500"
@@ -177,13 +185,10 @@ export default function Header() {
 
           <h1
             className={`cursor-pointer hover:text-orange-500 ${
-              pathname === "/partners" ||
-              pathname === "/our-partners"
-                ? "text-orange-500"
-                : ""
+              pathname === "/our-partners" ? "text-orange-500" : ""
             }`}
           >
-            <Link href="/partners">Our Partners</Link>
+            <Link href="/our-partners">Our Partners</Link>
           </h1>
 
           <h1
@@ -232,12 +237,23 @@ export default function Header() {
             </option>
           </select>
 
-          <button
-            className="donate-btn min-w-fit"
-            onClick={() => handleNavigation("/donate")}
+          {/* Support Our Work button */}
+          <Link
+            href="/donate"
+            style={{ backgroundColor: "#D95D39" }}
+            className="inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-3 rounded-full transition-opacity hover:opacity-90 self-start"
           >
-            Donate now
-          </button>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="w-4 h-4"
+            >
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            Donate Now
+          </Link>
 
           <div
             className="flex cursor-pointer lg:hidden"
@@ -392,12 +408,11 @@ export default function Header() {
 
           <h1
             className={`cursor-pointer hover:text-orange-500 ${
-              pathname === "/partners" ||
               pathname === "/our-partners"
                 ? "text-orange-500"
                 : ""
             }`}
-            onClick={() => handleNavigation("/partners")}
+            onClick={() => handleNavigation("/our-partners")}
           >
             Our Partners
           </h1>
